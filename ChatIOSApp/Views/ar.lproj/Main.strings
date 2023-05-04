@@ -1,0 +1,114 @@
+
+/* Class = "UILabel"; text = "Version 1.0.0"; ObjectID = "2mN-nQ-k2P"; */
+"2mN-nQ-k2P.text" = "اصدار  ١.٠.٠";
+
+/* Class = "UIButton"; configuration.title = "Login"; ObjectID = "4Sz-fh-F2x"; */
+"4Sz-fh-F2x.configuration.title" = "تسجيل الدخول";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4Sz-fh-F2x"; */
+"4Sz-fh-F2x.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Create an account"; ObjectID = "4lk-Z1-FO0"; */
+"4lk-Z1-FO0.configuration.title" = "انشائ حساب جديد";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4lk-Z1-FO0"; */
+"4lk-Z1-FO0.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "HomeChat for Ipad"; ObjectID = "7kh-mO-2Lw"; */
+"7kh-mO-2Lw.text" = "HomeChat for Ipad";
+
+/* Class = "UITextField"; text = "Hey There! i am using ChatNow"; ObjectID = "81w-ze-6wz"; */
+"81w-ze-6wz.text" = "Hey There! i am using ChatNow";
+
+/* Class = "UINavigationItem"; title = "Register"; ObjectID = "8Lm-tv-PJK"; */
+"8Lm-tv-PJK.title" = "تسجيل جديد";
+
+/* Class = "UIButton"; configuration.title = "ADD"; ObjectID = "9b7-Kc-lZJ"; */
+"9b7-Kc-lZJ.configuration.title" = "اضف";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "9b7-Kc-lZJ"; */
+"9b7-Kc-lZJ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "ASZ-MK-3YX"; */
+"ASZ-MK-3YX.placeholder" = "البريد";
+
+/* Class = "UIButton"; configuration.title = "🗣️       App Language >"; ObjectID = "EQC-sM-iii"; */
+"EQC-sM-iii.configuration.title" = " لغه التطبيق🗣️  >";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "EQC-sM-iii"; */
+"EQC-sM-iii.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "👤       Name"; ObjectID = "Gsl-G9-PaO"; */
+"Gsl-G9-PaO.text" = "👤       الاسم";
+
+/* Class = "UIButton"; configuration.title = "Register"; ObjectID = "GuV-ha-qKF"; */
+"GuV-ha-qKF.configuration.title" = "تسجيل جديد";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "GuV-ha-qKF"; */
+"GuV-ha-qKF.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "© 2023 developed by omar Abdelrazik Kobasiy"; ObjectID = "HHc-lp-O2a"; */
+"HHc-lp-O2a.text" = "© 2023 developed by omar Abdelrazik Kobasiy";
+
+/* Class = "UILabel"; text = "ⓘ      About"; ObjectID = "Im8-cT-Rzg"; */
+"Im8-cT-Rzg.text" = "ⓘ    بخصوص التطبيق";
+
+/* Class = "UIButton"; configuration.title = "ADD"; ObjectID = "MQC-DO-wab"; */
+"MQC-DO-wab.configuration.title" = "اضف";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MQC-DO-wab"; */
+"MQC-DO-wab.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "NLa-Rp-Yoa"; */
+"NLa-Rp-Yoa.title" = "Item";
+
+/* Class = "UITextField"; placeholder = "email"; ObjectID = "O8S-n0-l5a"; */
+"O8S-n0-l5a.placeholder" = "البريد";
+
+/* Class = "UINavigationItem"; title = "Sign in"; ObjectID = "WeN-6N-pEK"; */
+"WeN-6N-pEK.title" = "تسجيل الدخول";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "X46-Hj-Jza"; */
+"X46-Hj-Jza.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "get Started"; ObjectID = "Z8k-79-0nR"; */
+"Z8k-79-0nR.configuration.title" = "ابدا";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Z8k-79-0nR"; */
+"Z8k-79-0nR.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "ZAc-MR-xuX"; */
+"ZAc-MR-xuX.title" = "الرئيسيه";
+
+/* Class = "UILabel"; text = "ChatNow Messenger"; ObjectID = "cYj-pn-XLF"; */
+"cYj-pn-XLF.text" = "تحدث الان للمراسلات";
+
+/* Class = "UITextField"; placeholder = "UserName"; ObjectID = "heM-bX-UCQ"; */
+"heM-bX-UCQ.placeholder" = "اسم المستخدم";
+
+/* Class = "UILabel"; text = "App Theme "; ObjectID = "iQx-UE-DUy"; */
+"iQx-UE-DUy.text" = "مظهر التطبيق";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jI2-3J-G4N"; */
+"jI2-3J-G4N.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "pup-I4-Za8"; */
+"pup-I4-Za8.placeholder" = "كلمه المرور";
+
+/* Class = "UITextField"; placeholder = "password"; ObjectID = "rwI-YF-amU"; */
+"rwI-YF-amU.placeholder" = "كلمه المرور";
+
+/* Class = "UITextField"; placeholder = "enter your message"; ObjectID = "s4D-3I-j0z"; */
+"s4D-3I-j0z.placeholder" = "enter your message";
+
+/* Class = "UIButton"; configuration.title = "ⓘ    About App"; ObjectID = "t8c-w4-m78"; */
+"t8c-w4-m78.configuration.title" = "ⓘ    بخصوص التطبيق";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "t8c-w4-m78"; */
+"t8c-w4-m78.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "confirmPassword"; ObjectID = "t9M-HA-vxj"; */
+"t9M-HA-vxj.placeholder" = "تاكيد كلمه المرور";
+
+/* Class = "UILabel"; text = "enter your friendID"; ObjectID = "yYv-h4-KCp"; */
+"yYv-h4-KCp.text" = "ادخل رقم صديقك";

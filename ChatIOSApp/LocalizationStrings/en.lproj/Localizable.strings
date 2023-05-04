@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  ChatIOSApp
+
+  Created by Omar on 01/05/2023.
+  
+*/
+"sign_in" = "SignIn"; 
+"register" = "Register";
+"email" = "email";
+"password" = "Password";
+"log_in" = "LogIn";
+"create_an_account" = "Create an account";
+"user_name" = "userName";
+"confirm_password" = "ConfirmPassword";
+"name" = "👤       Name";
+"about" = "ⓘ      About";
+"get_started" = "getStarted";
+"home" = "Home";
+"add_friend" = "ADD Friend";
+"create_group" = "Create Group";
+"settings" = "Settings";
+"log_out" = "LogOut";
+"enter_your_friend_id" = "enter your friendID";
+"add" = "ADD";
+"app_language" = "🗣️       App Language >";
+"app_theme" = "Chat Theme";
+"about_app" = "ⓘ    About App";
+"chat_now_messenger" = "ChatNow Messenger";
+"version" = "Version 1.0.0";
+"developed_by" = "developed by Omar Abdelrazik Mohamed";
+"back" = "back";
+"please_enter_your_email" = "please enter your email ❗";
+"please_enter_your_password" = "please enter your password ❗";
+"please_enter_your_name" = "please enter your name ❗";
+"incorrect_password" = "inCorrect Password❗";
+"LogIn_Status" = "LogIn Status";
+"RegistrationـStatus" = "Registration Status";
+"SuccessfullyـRegistered" = "Successfully Registered";
+"error" = "error";
