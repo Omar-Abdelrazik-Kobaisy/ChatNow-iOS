@@ -44,8 +44,6 @@ class AddFriendViewController: BaseViewController {
     @IBAction func onAddFriend(_ sender: UIButton) {
         print("clicked")
             guard let currentUser = UserProvider.getInstance.getCurrentUser() else {return}
-        
-//        guard let currentUser = user else { return}
         print(currentUser.email ?? "")
             for user in arr ?? [] {
 //                print("\(String(describing: user.userName))")
@@ -58,10 +56,10 @@ class AddFriendViewController: BaseViewController {
                     let room = PrivateRoom(senderID: currentUser.id , senderEmail: currentUser.email
                                            , recieverID: user.id , recieverEmail: user.email)
                     viewModel?.createRoom(rooms : privateRoomsArr, room: room, user: currentUser, friend: user)
-                    
+                    let request = Request(requestFromName: currentUser.userName , requestFromId: currentUser.id , requestToName: user.userName , requestToId: user.id , requesrFromImage: currentUser.imageRef)
+                    viewModel?.sendRequest(request: request, to: user)
                 }
             }
-//        reload?.reloadData()
     }
     /*
     // MARK: - Navigation

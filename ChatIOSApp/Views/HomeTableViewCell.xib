@@ -86,7 +86,7 @@
                 <outlet property="userImage" destination="GBz-i6-ujh" id="Acs-Yr-JvI"/>
                 <outlet property="userName" destination="w1n-Px-sM1" id="XOU-OT-8cZ"/>
             </connections>
-            <point key="canvasLocation" x="42.748091603053432" y="15.492957746478874"/>
+            <point key="canvasLocation" x="-127" y="20"/>
         </tableViewCell>
     </objects>
 </document>

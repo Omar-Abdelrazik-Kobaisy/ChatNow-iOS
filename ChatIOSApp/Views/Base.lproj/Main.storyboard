@@ -552,9 +552,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qUZ-hX-Vpg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qUZ-hX-Vpg">
                                 <rect key="frame" x="0.0" y="103" width="430" height="829"/>
-                                <color key="backgroundColor" red="0.24453291299999999" green="0.59663611650000004" blue="0.85755109789999995" alpha="0.45186049273224915" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Obb-CM-wh5" id="qp4-mo-33r"/>
                                     <outlet property="delegate" destination="Obb-CM-wh5" id="qmK-DC-1Kp"/>
@@ -562,7 +562,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QS4-s4-fBr"/>
-                        <color key="backgroundColor" red="0.24453291299999999" green="0.59663611650000004" blue="0.85755109789999995" alpha="0.45462897683487458" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qUZ-hX-Vpg" firstAttribute="top" secondItem="QS4-s4-fBr" secondAttribute="top" id="1f1-OP-Pdh"/>
                             <constraint firstAttribute="trailing" secondItem="qUZ-hX-Vpg" secondAttribute="trailing" id="boL-36-EMG"/>
@@ -980,12 +980,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bg" translatesAutoresizingMaskIntoConstraints="NO" id="k4o-PO-bk4">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-mS-lmb">
-                                <rect key="frame" x="16" y="359" width="398" height="539"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="539" id="whp-wq-fnG"/>
-                                </constraints>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-mS-lmb">
+                                <rect key="frame" x="20" y="236" width="390" height="662"/>
+                                <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dXL-c8-0xb" id="2Ub-dT-qyA"/>
+                                    <outlet property="delegate" destination="dXL-c8-0xb" id="3fQ-mT-uET"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Krm-dG-Ec8"/>
@@ -993,17 +994,21 @@
                         <constraints>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="top" secondItem="Gkh-jo-uie" secondAttribute="top" id="8nA-XW-TEB"/>
                             <constraint firstAttribute="bottom" secondItem="k4o-PO-bk4" secondAttribute="bottom" id="9F4-5R-MdH"/>
+                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="top" secondItem="Krm-dG-Ec8" secondAttribute="top" constant="177" id="NXA-Fq-mtW"/>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" id="eax-dO-Bwz"/>
-                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" constant="16" id="kSr-my-zWJ"/>
+                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" constant="20" id="kSr-my-zWJ"/>
                             <constraint firstItem="aeZ-mS-lmb" firstAttribute="bottom" secondItem="Krm-dG-Ec8" secondAttribute="bottom" id="ncI-UG-F3T"/>
-                            <constraint firstItem="Krm-dG-Ec8" firstAttribute="trailing" secondItem="aeZ-mS-lmb" secondAttribute="trailing" constant="16" id="o4I-AD-YmJ"/>
+                            <constraint firstItem="Krm-dG-Ec8" firstAttribute="trailing" secondItem="aeZ-mS-lmb" secondAttribute="trailing" constant="20" id="o4I-AD-YmJ"/>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="trailing" secondItem="Krm-dG-Ec8" secondAttribute="trailing" id="v5M-XZ-cYy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableV" destination="aeZ-mS-lmb" id="ugu-3d-pwT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDc-XE-Nzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8817.5572519083962" y="660.56338028169023"/>
+            <point key="canvasLocation" x="8814.4186046511622" y="659.22746781115882"/>
         </scene>
     </scenes>
     <resources>

@@ -51,8 +51,9 @@ extension SplitViewController : HomeControllerDelegate {
         let friendRequestVC = self.storyboard?.instantiateViewController(withIdentifier: "FriendRequestViewController") as! FriendRequestViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(friendRequestVC, animated: true)
+        friendRequestVC.reloadTV = self
     }
-    
+     
     func AddFriendSelected() {
         let addFriendVC = self.storyboard?.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
         

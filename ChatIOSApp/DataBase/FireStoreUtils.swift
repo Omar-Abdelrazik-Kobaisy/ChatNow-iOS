@@ -154,4 +154,35 @@ class FireStoreUtils {
             }
         })
     }
+    
+    
+    func makeRequest(request : Request , to friend : User , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let requestDOC_REF = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(friend.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).document()
+        request.id = requestDOC_REF?.documentID
+        requestDOC_REF?.setData(ModelController().convert(from: request).toDictionary,completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
+    
+    func getAllRequest(user : User , onCompleteDelegate : @escaping ([Request])->(Void)){
+        
+        var requests : [Request] = []
+        
+        db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).addSnapshotListener({ querySnapShot, error in
+            if let e = error {
+                //fail
+                print("fail to get Requset \(e.localizedDescription)")
+            }else{
+                //success
+                guard let querySnapShot = querySnapShot else{ return }
+                for doc in querySnapShot.documentChanges{
+                    if doc.type == .added {
+                        guard let requset = ModelController().convert(dictionary: doc.document.data(), ToObj: Request()) else{ return }
+                        requests.append(requset)
+                    }
+                }
+                onCompleteDelegate(requests)
+            }
+        })
+    }
 }
