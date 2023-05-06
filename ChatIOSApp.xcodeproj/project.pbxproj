@@ -33,6 +33,7 @@
 		076BCF9929EF8B6900D2C06D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BCF9829EF8B6900D2C06D /* SplitViewController.swift */; };
 		077EEA1429FB9853003D3662 /* PrivateRooms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077EEA1329FB9853003D3662 /* PrivateRooms.swift */; };
 		077EEA1729FB9B65003D3662 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077EEA1629FB9B65003D3662 /* ModelController.swift */; };
+		07814FEE2A0604910095DF57 /* UIBarButtonItem+Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07814FED2A0604910095DF57 /* UIBarButtonItem+Badge.swift */; };
 		0785FDBF29E8900100D24859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0785FDBE29E8900100D24859 /* GoogleService-Info.plist */; };
 		0785FDC229E897D100D24859 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0785FDC129E897D100D24859 /* FirebaseAnalytics */; };
 		0785FDC429E897D100D24859 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0785FDC329E897D100D24859 /* FirebaseAnalyticsSwift */; };
@@ -128,6 +129,7 @@
 		076BCF9829EF8B6900D2C06D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		077EEA1329FB9853003D3662 /* PrivateRooms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateRooms.swift; sourceTree = "<group>"; };
 		077EEA1629FB9B65003D3662 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		07814FED2A0604910095DF57 /* UIBarButtonItem+Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Badge.swift"; sourceTree = "<group>"; };
 		0785FDBE29E8900100D24859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0785FDCB29E89C6300D24859 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		078AA96B29EF9BF8008FF544 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			children = (
 				07D7B19329EE1D6B002318A3 /* StringExtension.swift */,
 				076BCF9629EF8A0400D2C06D /* UIViewControllerExtension.swift */,
+				07814FED2A0604910095DF57 /* UIBarButtonItem+Badge.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				079024A829FF74820025E0B1 /* ReloadTableView.swift in Sources */,
 				0785FDCC29E89C6300D24859 /* UserDetailsViewController.swift in Sources */,
 				07F8FD5D29E59563003FCBCD /* SigninViewController.swift in Sources */,
+				07814FEE2A0604910095DF57 /* UIBarButtonItem+Badge.swift in Sources */,
 				07B4346829FDC8E20034527D /* RecieverTableViewCell.swift in Sources */,
 				07EEE55C29F6DEE70061CABA /* AddFriendViewModel.swift in Sources */,
 				07C0CCB529F08EE800219F10 /* HomeViewModel.swift in Sources */,

@@ -20,6 +20,7 @@ class HomeViewController: BaseViewController {
     var menuDelegate : HomeControllerDelegate?
     var friendRequestDelegate : HomeControllerDelegate?
     var friendsArray : [User]?
+//    var requestsArr : [Request]?
     var data : Data?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +60,19 @@ class HomeViewController: BaseViewController {
                 self?.tableView.reloadData()
             }
         }
-
-
+//        let friendRequestVM = FriendRequestViewModel()
+//        friendRequestVM.fetchAllRequestFromDB()
+//        friendRequestVM.bindingAllRequest = {[weak self] requests in
+//            self?.requestsArr = requests
+//        }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let rightBarButton = self.navigationItem.rightBarButtonItem
+
+        rightBarButton?.addBadge(text: "3" , withOffset: CGPoint(x: -50, y: 0))
+    }
     @IBAction func onFriendRequestSelected(_ sender: UIBarButtonItem)
     {
         if UIDevice.current.userInterfaceIdiom == .pad{
