@@ -12,6 +12,9 @@ import FirebaseAuth
 import FirebaseStorageUI
 class HomeViewController: BaseViewController {
 
+    
+    @IBOutlet weak var friendRequestBtn: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var HomeMenuOptions: UIBarButtonItem!
@@ -20,7 +23,8 @@ class HomeViewController: BaseViewController {
     var menuDelegate : HomeControllerDelegate?
     var friendRequestDelegate : HomeControllerDelegate?
     var friendsArray : [User]?
-//    var requestsArr : [Request]?
+    var requestsArr : [Request]?
+    
     var data : Data?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,19 +64,23 @@ class HomeViewController: BaseViewController {
                 self?.tableView.reloadData()
             }
         }
-//        let friendRequestVM = FriendRequestViewModel()
-//        friendRequestVM.fetchAllRequestFromDB()
-//        friendRequestVM.bindingAllRequest = {[weak self] requests in
-//            self?.requestsArr = requests
-//        }
+        homeViewModel?.fetchAllFriendRequestFromDB()
+        homeViewModel?.bindingAllRequest = {[weak self] requests in
+            self?.requestsArr = requests
+            DispatchQueue.main.async {
+                guard let requestsArrCount = self?.requestsArr?.count else { return }
+//                self?.rightBarButton = self?.navigationItem.rightBarButtonItem
+//                rightBarButton?.addBadge(text: "\(requestsArrCount)" , withOffset: CGPoint(x: -50, y: -10))
+                self?.friendRequestBtn.setBadge(text: "\(requestsArrCount)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8))
+                if requestsArrCount == 0 {
+                    self?.friendRequestBtn.removeBadge()
+                }
+            }
+        }
+        
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let rightBarButton = self.navigationItem.rightBarButtonItem
 
-        rightBarButton?.addBadge(text: "3" , withOffset: CGPoint(x: -50, y: 0))
-    }
     @IBAction func onFriendRequestSelected(_ sender: UIBarButtonItem)
     {
         if UIDevice.current.userInterfaceIdiom == .pad{
@@ -193,7 +201,14 @@ extension HomeViewController : HomeViewModelNavigator{
     
     
 }
-extension HomeViewController : ReloadTableViewDelegate { 
+extension HomeViewController : ReloadTableViewDelegate {
+    func setFriendRequestsCountDelegate(friendRequestsCount count: Int) {
+        friendRequestBtn.setBadge(text: "\(count)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8)  )
+        if count == 0 {
+            friendRequestBtn.removeBadge()
+        }
+    }
+    
     func reloadDataDelegate() {
         homeViewModel?.fetchAllFriendFromDB()
         homeViewModel?.bindingFriends = {[weak self] friends in

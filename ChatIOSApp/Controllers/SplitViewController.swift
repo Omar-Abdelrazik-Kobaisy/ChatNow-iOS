@@ -53,7 +53,6 @@ extension SplitViewController : HomeControllerDelegate {
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(friendRequestVC, animated: true)
         friendRequestVC.reloadTV = self
-//        friendRequestVC.deleteFromTV = self
     }
      
     func AddFriendSelected() {
@@ -107,6 +106,11 @@ extension SplitViewController : HomeControllerDelegate {
     
 }
 extension SplitViewController : ReloadTableView {
+    func setFriendRequestsCount(friendRequestsCount count: Int) {
+        reloadDelegate = primaryVC
+        reloadDelegate?.setFriendRequestsCountDelegate(friendRequestsCount: count)
+    }
+    
     func reloadData() {
         reloadDelegate = primaryVC
         reloadDelegate?.reloadDataDelegate()

@@ -31,6 +31,11 @@ class FriendRequestViewController: BaseViewController {
             DispatchQueue.main.async {
                 //reload table here
                 self?.tableV.reloadData()
+                guard let requestsArrCount = self?.requestsArr?.count else{
+                    print("error while safe unWrrap requestsARRCOUNT")
+                    return
+                }
+                self?.reloadTV?.setFriendRequestsCount(friendRequestsCount: requestsArrCount)
             }
         }
     }
@@ -73,7 +78,7 @@ extension FriendRequestViewController : OnClickTableViewDelegate {
         viewModel?.deleteFromDB(reqId: requestId, onCompleteDelegate: {[weak self] error in
             if let e = error {
                 //fail
-                print("\(e.localizedDescription)")
+                print("error while delete request :\(e.localizedDescription)")
             }else{
                 //success
                 self?.viewModel?.fetchAllRequestFromDB()
@@ -82,6 +87,11 @@ extension FriendRequestViewController : OnClickTableViewDelegate {
                     DispatchQueue.main.async {
                         //reload table here
                         self?.tableV.reloadData()
+                        guard let requestsArrCount = self?.requestsArr?.count else{
+                            print("error while safe unWrrap requestsARRCOUNT")
+                            return
+                        }
+                        self?.reloadTV?.setFriendRequestsCount(friendRequestsCount: requestsArrCount)
                     }
                 }
             }
@@ -97,7 +107,7 @@ extension FriendRequestViewController : OnClickTableViewDelegate {
         viewModel?.deleteFromDB(reqId: requestId, onCompleteDelegate: {[weak self] error in
             if let e = error {
                 //fail
-                print("\(e.localizedDescription)")
+                print("error while delete request :\(e.localizedDescription)")
             }else{
                 //success
                 self?.viewModel?.fetchAllRequestFromDB()
@@ -106,6 +116,11 @@ extension FriendRequestViewController : OnClickTableViewDelegate {
                     DispatchQueue.main.async {
                         //reload table here
                         self?.tableV.reloadData()
+                        guard let requestsArrCount = self?.requestsArr?.count else{
+                            print("error while safe unWrrap requestsARRCOUNT")
+                            return
+                        }
+                        self?.reloadTV?.setFriendRequestsCount(friendRequestsCount: requestsArrCount)
                     }
                 }
             }

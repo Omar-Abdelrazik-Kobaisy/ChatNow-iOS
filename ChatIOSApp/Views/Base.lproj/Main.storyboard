@@ -586,6 +586,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="HomeMenuOptions" destination="NLa-Rp-Yoa" id="jRA-RU-YmP"/>
+                        <outlet property="friendRequestBtn" destination="Wxr-3r-BXI" id="PxU-jQ-15E"/>
                         <outlet property="tableView" destination="qUZ-hX-Vpg" id="36K-jD-cLL"/>
                     </connections>
                 </viewController>

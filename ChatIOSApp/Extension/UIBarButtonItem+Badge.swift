@@ -28,7 +28,7 @@ extension UIBarButtonItem {
     }
 }
 
-func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.zero, andColor color:UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 11)
+func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.zero, andColor color:UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 20)
 {
     badgeLayer?.removeFromSuperlayer()
 
@@ -39,7 +39,7 @@ func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.ze
     addBadge(text: text!, withOffset: offset, andColor: color, andFilled: filled)
 }
 
- func addBadge(text: String, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 11)
+ func addBadge(text: String, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 20)
 {
     guard let view = self.value(forKey: "view") as? UIView else { return }
 
@@ -84,7 +84,7 @@ func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.ze
     objc_setAssociatedObject(self, &handle, badge, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 }
 
-private func removeBadge() {
+ func removeBadge() {
     badgeLayer?.removeFromSuperlayer()
 }
 }
