@@ -53,4 +53,10 @@ class FriendRequestViewModel {
             }
         }
     }
+    func deleteFromDB(reqId : String , onCompleteDelegate : @escaping (Error?)->(Void) ){
+        guard let currentUser = UserProvider.getInstance.getCurrentUser() else { return }
+        FireStoreUtils.sharedInstance.deleteRequest(user: currentUser, requestId: reqId) { error in
+            onCompleteDelegate(error)
+        }
+    }
 }

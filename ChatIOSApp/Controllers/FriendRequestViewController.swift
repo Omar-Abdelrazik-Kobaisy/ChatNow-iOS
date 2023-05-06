@@ -15,6 +15,8 @@ class FriendRequestViewController: BaseViewController {
     var viewModel : FriendRequestViewModel?
     var requestsArr : [Request]?
     var reloadTV : ReloadTableView?
+//    var deleteFromTV : DeleteFromTableView?
+//    var deleteFromTV : DeleteFromTableViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -65,12 +67,49 @@ extension FriendRequestViewController : UITableViewDelegate {
 }
 extension FriendRequestViewController : OnClickTableViewDelegate {
     func onReject(friend: FriendRequestTableViewCell) {
+        print("row number : \(tableV.indexPath(for: friend)?.row ?? 99)" )
         print("rejected")
+        guard let requestId = requestsArr?[tableV.indexPath(for: friend)?.row ?? 999].id else { return }
+        viewModel?.deleteFromDB(reqId: requestId, onCompleteDelegate: {[weak self] error in
+            if let e = error {
+                //fail
+                print("\(e.localizedDescription)")
+            }else{
+                //success
+                self?.viewModel?.fetchAllRequestFromDB()
+                self?.viewModel?.bindingAllRequest = {[weak self] requests in
+                    self?.requestsArr = requests
+                    DispatchQueue.main.async {
+                        //reload table here
+                        self?.tableV.reloadData()
+                    }
+                }
+            }
+        })
     }
     
     func onConfirm(friend: FriendRequestTableViewCell) {
+        print("row number : \(tableV.indexPath(for: friend)?.row ?? 99)" )
         guard let friendId = requestsArr?[tableV.indexPath(for: friend)?.row ?? 999].requestFromId else { return }
+        guard let requestId = requestsArr?[tableV.indexPath(for: friend)?.row ?? 999].id else { return }
         print(friendId)
         viewModel?.addFriendToDB(friendID: friendId , reloadTV: reloadTV)
+        viewModel?.deleteFromDB(reqId: requestId, onCompleteDelegate: {[weak self] error in
+            if let e = error {
+                //fail
+                print("\(e.localizedDescription)")
+            }else{
+                //success
+                self?.viewModel?.fetchAllRequestFromDB()
+                self?.viewModel?.bindingAllRequest = {[weak self] requests in
+                    self?.requestsArr = requests
+                    DispatchQueue.main.async {
+                        //reload table here
+                        self?.tableV.reloadData()
+                    }
+                }
+            }
+        })
     }
 }
+

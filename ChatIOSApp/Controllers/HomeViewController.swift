@@ -183,7 +183,7 @@ extension HomeViewController : HomeViewModelNavigator{
     
     
 }
-extension HomeViewController : ReloadTableViewDelegate {
+extension HomeViewController : ReloadTableViewDelegate { 
     func reloadDataDelegate() {
         homeViewModel?.fetchAllFriendFromDB()
         homeViewModel?.bindingFriends = {[weak self] friends in

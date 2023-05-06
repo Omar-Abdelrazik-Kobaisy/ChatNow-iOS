@@ -16,6 +16,7 @@ class SplitViewController: UISplitViewController{
     var secondaryVC : SecondaryViewController!
     
     var reloadDelegate : ReloadTableViewDelegate?
+//    var deleteDelegate : DeleteFromTableViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,7 @@ extension SplitViewController : HomeControllerDelegate {
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(friendRequestVC, animated: true)
         friendRequestVC.reloadTV = self
+//        friendRequestVC.deleteFromTV = self
     }
      
     func AddFriendSelected() {
@@ -109,6 +111,11 @@ extension SplitViewController : ReloadTableView {
         reloadDelegate = primaryVC
         reloadDelegate?.reloadDataDelegate()
     }
-    
-    
 }
+
+//extension SplitViewController : DeleteFromTableView{
+//    func deleteData() {
+//        deleteDelegate = secondaryVC
+//        deleteDelegate?.deleteDataDelegate()
+//    }
+//}

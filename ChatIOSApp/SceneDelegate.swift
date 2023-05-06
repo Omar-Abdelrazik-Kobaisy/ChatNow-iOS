@@ -47,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate , MOLHSceneResetable{
     }
 
     func didStartView(){
-        if Auth.auth().currentUser != nil {
+        if Auth.auth().currentUser != nil && UserProvider.getInstance.getCurrentUser() != nil{
             // navigate to Home
             print(Auth.auth().currentUser?.email ?? "")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

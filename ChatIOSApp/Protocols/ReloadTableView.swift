@@ -15,3 +15,11 @@ protocol ReloadTableViewDelegate{
 protocol ReloadTableView {
     func reloadData()
 }
+
+protocol DeleteFromTableViewDelegate{
+    func deleteDataDelegate()
+}
+
+protocol DeleteFromTableView{
+    func deleteData()
+}

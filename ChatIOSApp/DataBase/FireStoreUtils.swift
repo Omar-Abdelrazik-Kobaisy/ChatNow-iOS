@@ -176,13 +176,23 @@ class FireStoreUtils {
                 //success
                 guard let querySnapShot = querySnapShot else{ return }
                 for doc in querySnapShot.documentChanges{
+                    guard let requset = ModelController().convert(dictionary: doc.document.data(), ToObj: Request()) else{ return }
                     if doc.type == .added {
-                        guard let requset = ModelController().convert(dictionary: doc.document.data(), ToObj: Request()) else{ return }
                         requests.append(requset)
+                    }
+                    if doc.type == .removed {
+                        print(ModelController().convert(from: requset).toDictionary)
+                        doc.document.reference.delete()
                     }
                 }
                 onCompleteDelegate(requests)
             }
+        })
+    }
+    
+    func deleteRequest(user : User , requestId : String , onCompleteDelegate : @escaping (Error?)->(Void)){
+        db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).document(requestId).delete(completion: { error in
+            onCompleteDelegate(error)
         })
     }
 }
