@@ -47,17 +47,7 @@ class ChatViewModel {
     
     func configureUI(){
         navigator?.textFieldStyle(tf: chatUI?.message, color: .systemBlue, placeHolder: "enter your message")
-        
-//        if UserDefaults.standard.bool(forKey: "Theme")
-//        {
-//            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
-//        }else{
-//            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "dark-bg"))
-//        }
             chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
-            
-        
-        
     }
     
     func addMessageToDB(from user : User ,to friend : User , rooms : [PrivateRoom]?){
@@ -92,6 +82,21 @@ class ChatViewModel {
     func getAllMessagesFromDB(roomID : String){
         FireStoreUtils.sharedInstance.getAllMessages(roomID: roomID) {[weak self] messages in
             self?.messages = messages
+        }
+    }
+    
+    func remove(FriendFromDB friend : User , onCompleteRemoveFriend : @escaping ()->()){
+        guard let currentUser = UserProvider.getInstance.getCurrentUser() else{ return }
+        FireStoreUtils.sharedInstance.deleteFriend(user: currentUser, friend: friend) {[weak self] error in
+            if let e = error {
+                //fail
+                self?.navigator?.showAlert(title: "Remove Friend", message: "error : \(e.localizedDescription)", onActionClick: nil)
+            }else{
+                //success
+                self?.navigator?.showAlert(title: "Remove \(friend.userName ?? "") ?", message: "Are you sure remove \(friend.userName ?? "") ", onActionClick: {
+                    onCompleteRemoveFriend()
+                })
+            }
         }
     }
     

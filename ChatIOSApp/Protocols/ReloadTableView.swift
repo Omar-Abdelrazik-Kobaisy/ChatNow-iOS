@@ -16,6 +16,7 @@ protocol ReloadTableViewDelegate{
 protocol ReloadTableView {
     func reloadData()
     func setFriendRequestsCount(friendRequestsCount count:Int)
+    func reloadFriends()
 }
 
 protocol DeleteFromTableViewDelegate{

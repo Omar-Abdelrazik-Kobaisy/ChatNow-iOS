@@ -20,7 +20,7 @@ class ChatViewController: BaseViewController {
     
 
     var chatViewModel : ChatViewModel?
-    var menuDelegate : ChatControllerDelegate?
+    var menuDelegate : ReloadTableView?
     var menu : UIMenu?
     var userName : String?
     var friend : User?
@@ -137,8 +137,25 @@ extension ChatViewController : UITableViewDelegate
 
 extension ChatViewController : ChatViewModelDelegate {
     func onRemoveFriendSelected() {
-//        menuDelegate?.removeFriendSelected()
+        
+        guard let friend = friend else { return }
         print("onRemoveFriendSelected")
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            //remove from db
+            //pop to previous view
+            //reload table ,--> this will done in will appear of homeVC
+            
+            chatViewModel?.remove(FriendFromDB: friend, onCompleteRemoveFriend: {
+                self.navigationController?.popViewController(animated: true)
+            })
+        }else{
+            //remove from db
+            //delegate to split and from split delegate to home
+            //implement reload table by reload or fetch from db
+            chatViewModel?.remove(FriendFromDB: friend, onCompleteRemoveFriend: { [weak self] in
+                self?.menuDelegate?.reloadFriends()
+            })
+        }
     }
     
     func onAboutFriendSelected() {

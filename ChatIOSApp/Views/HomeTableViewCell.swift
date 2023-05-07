@@ -21,6 +21,10 @@ class HomeTableViewCell: UITableViewCell {
         super.awakeFromNib()
         item.layer.cornerRadius = item.frame.size.height / 5
         userImage.layer.cornerRadius = userImage.frame.size.height/5
+        messageCount.adjustsFontSizeToFitWidth = true
+        messageCount.layer.cornerRadius = messageCount.frame.size.height/5
+        messageCount.textColor = .white
+        messageCount.clipsToBounds = true
         
     }
 

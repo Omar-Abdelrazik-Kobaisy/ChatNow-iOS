@@ -81,6 +81,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate , MOLHSceneResetable{
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }
+        if UserDefaults.standard.bool(forKey: "Theme") {
+            window?.overrideUserInterfaceStyle = .light
+        }else{
+            window?.overrideUserInterfaceStyle = .dark
+        }
     }
     
     

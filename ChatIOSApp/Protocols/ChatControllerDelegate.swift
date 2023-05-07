@@ -18,5 +18,4 @@ protocol ChatViewModelDelegate {
 }
 protocol ChatControllerDelegate {
     func removeFriendSelected()
-    func aboutFriendSelected()
 }

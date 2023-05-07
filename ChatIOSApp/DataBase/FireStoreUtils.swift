@@ -195,4 +195,11 @@ class FireStoreUtils {
             onCompleteDelegate(error)
         })
     }
+    
+    func deleteFriend(user : User , friend : User , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let friendCollectionRef = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.FRIEND_COLLECTION_REFERENCE)
+        friendCollectionRef?.document(friend.id ?? "").delete(completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
 }

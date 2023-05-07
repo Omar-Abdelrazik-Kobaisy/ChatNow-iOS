@@ -49,6 +49,7 @@ class SplitViewController: UISplitViewController{
 
 extension SplitViewController : HomeControllerDelegate {
     func FriendRequestSelected() {
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
         let friendRequestVC = self.storyboard?.instantiateViewController(withIdentifier: "FriendRequestViewController") as! FriendRequestViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(friendRequestVC, animated: true)
@@ -56,6 +57,7 @@ extension SplitViewController : HomeControllerDelegate {
     }
      
     func AddFriendSelected() {
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
         let addFriendVC = self.storyboard?.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(addFriendVC, animated: true)
@@ -63,12 +65,14 @@ extension SplitViewController : HomeControllerDelegate {
     }
      
     func CreateGroupSelected() {
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
         let createGroupVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(createGroupVC, animated: true)
     }
     
     func SettingsSelected() {
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
         let settingsVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(settingsVC, animated: true)
@@ -101,11 +105,18 @@ extension SplitViewController : HomeControllerDelegate {
         let ChatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         ChatVC.friend = friend
         (self.viewControllers.last as? UINavigationController)?.pushViewController(ChatVC, animated: true)
+        ChatVC.menuDelegate = self
     }
     
     
 }
 extension SplitViewController : ReloadTableView {
+    func reloadFriends() {
+        reloadDelegate = primaryVC
+        reloadDelegate?.reloadDataDelegate()
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
+    }
+    
     func setFriendRequestsCount(friendRequestsCount count: Int) {
         reloadDelegate = primaryVC
         reloadDelegate?.setFriendRequestsCountDelegate(friendRequestsCount: count)
@@ -117,9 +128,4 @@ extension SplitViewController : ReloadTableView {
     }
 }
 
-//extension SplitViewController : DeleteFromTableView{
-//    func deleteData() {
-//        deleteDelegate = secondaryVC
-//        deleteDelegate?.deleteDataDelegate()
-//    }
-//}
+
