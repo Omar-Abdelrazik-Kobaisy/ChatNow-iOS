@@ -460,6 +460,7 @@
                         </view>
                     </navigationItem>
                     <connections>
+                        <outlet property="bg" destination="qCk-Oe-0eT" id="b8b-A4-qJM"/>
                         <outlet property="messageTF" destination="s4D-3I-j0z" id="gkQ-sE-aOC"/>
                         <outlet property="tableView" destination="6dX-Y2-uo6" id="Y7d-BQ-m7m"/>
                     </connections>
@@ -552,9 +553,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qUZ-hX-Vpg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qUZ-hX-Vpg">
                                 <rect key="frame" x="0.0" y="103" width="430" height="829"/>
-                                <color key="backgroundColor" red="0.24453291299999999" green="0.59663611650000004" blue="0.85755109789999995" alpha="0.45186049273224915" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Obb-CM-wh5" id="qp4-mo-33r"/>
                                     <outlet property="delegate" destination="Obb-CM-wh5" id="qmK-DC-1Kp"/>
@@ -562,7 +563,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QS4-s4-fBr"/>
-                        <color key="backgroundColor" red="0.24453291299999999" green="0.59663611650000004" blue="0.85755109789999995" alpha="0.45462897683487458" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qUZ-hX-Vpg" firstAttribute="top" secondItem="QS4-s4-fBr" secondAttribute="top" id="1f1-OP-Pdh"/>
                             <constraint firstAttribute="trailing" secondItem="qUZ-hX-Vpg" secondAttribute="trailing" id="boL-36-EMG"/>
@@ -586,6 +587,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="HomeMenuOptions" destination="NLa-Rp-Yoa" id="jRA-RU-YmP"/>
+                        <outlet property="friendRequestBtn" destination="Wxr-3r-BXI" id="PxU-jQ-15E"/>
                         <outlet property="tableView" destination="qUZ-hX-Vpg" id="36K-jD-cLL"/>
                     </connections>
                 </viewController>
@@ -847,6 +849,7 @@
                         <outlet property="AppLanguageBTN" destination="EQC-sM-iii" id="wbi-QV-FNl"/>
                         <outlet property="aboutApp" destination="t8c-w4-m78" id="01R-Jn-JYE"/>
                         <outlet property="appTheme" destination="iQx-UE-DUy" id="zbK-yD-4mw"/>
+                        <outlet property="bg" destination="FXu-Np-laz" id="fRf-lE-Ipv"/>
                         <outlet property="themeSwitcher" destination="j9G-GS-3Jd" id="ujy-7w-2cH"/>
                         <outlet property="userAbout" destination="DF1-nm-x6g" id="TbQ-dR-AwZ"/>
                         <outlet property="userID" destination="ep4-W5-fPu" id="jsc-kM-C3e"/>
@@ -875,7 +878,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ChatNow Messenger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYj-pn-XLF">
                                         <rect key="frame" x="33.666666666666657" y="0.0" width="293.66666666666674" height="58.333333333333336"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                        <color key="textColor" red="0.9503818154" green="0.94912677999999995" blue="0.96903544659999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="highlightedColor" red="0.9503818154" green="0.94912677999999995" blue="0.96903544659999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mN-nQ-k2P">
@@ -980,12 +983,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bg" translatesAutoresizingMaskIntoConstraints="NO" id="k4o-PO-bk4">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-mS-lmb">
-                                <rect key="frame" x="16" y="359" width="398" height="539"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="539" id="whp-wq-fnG"/>
-                                </constraints>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-mS-lmb">
+                                <rect key="frame" x="20" y="236" width="390" height="662"/>
+                                <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dXL-c8-0xb" id="2Ub-dT-qyA"/>
+                                    <outlet property="delegate" destination="dXL-c8-0xb" id="3fQ-mT-uET"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Krm-dG-Ec8"/>
@@ -993,17 +997,21 @@
                         <constraints>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="top" secondItem="Gkh-jo-uie" secondAttribute="top" id="8nA-XW-TEB"/>
                             <constraint firstAttribute="bottom" secondItem="k4o-PO-bk4" secondAttribute="bottom" id="9F4-5R-MdH"/>
+                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="top" secondItem="Krm-dG-Ec8" secondAttribute="top" constant="177" id="NXA-Fq-mtW"/>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" id="eax-dO-Bwz"/>
-                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" constant="16" id="kSr-my-zWJ"/>
+                            <constraint firstItem="aeZ-mS-lmb" firstAttribute="leading" secondItem="Krm-dG-Ec8" secondAttribute="leading" constant="20" id="kSr-my-zWJ"/>
                             <constraint firstItem="aeZ-mS-lmb" firstAttribute="bottom" secondItem="Krm-dG-Ec8" secondAttribute="bottom" id="ncI-UG-F3T"/>
-                            <constraint firstItem="Krm-dG-Ec8" firstAttribute="trailing" secondItem="aeZ-mS-lmb" secondAttribute="trailing" constant="16" id="o4I-AD-YmJ"/>
+                            <constraint firstItem="Krm-dG-Ec8" firstAttribute="trailing" secondItem="aeZ-mS-lmb" secondAttribute="trailing" constant="20" id="o4I-AD-YmJ"/>
                             <constraint firstItem="k4o-PO-bk4" firstAttribute="trailing" secondItem="Krm-dG-Ec8" secondAttribute="trailing" id="v5M-XZ-cYy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableV" destination="aeZ-mS-lmb" id="ugu-3d-pwT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDc-XE-Nzl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8817.5572519083962" y="660.56338028169023"/>
+            <point key="canvasLocation" x="8814.4186046511622" y="659.22746781115882"/>
         </scene>
     </scenes>
     <resources>

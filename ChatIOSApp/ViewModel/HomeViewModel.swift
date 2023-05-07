@@ -27,6 +27,14 @@ class HomeViewModel: MenuNavigator{
     
     var bindingFriends : ([User])->(Void) = {_ in}
     var bindingImageData : ((Data?)->(Void)) = {_ in}
+    var bindingAllRequest : (([Request])->(Void)) = {_ in}
+    
+    var allRequest : [Request] = [] {
+        didSet{
+            //binding
+            bindingAllRequest(allRequest)
+        }
+    }
     var friends : [User] = []{
         didSet{
             //binding
@@ -65,6 +73,12 @@ class HomeViewModel: MenuNavigator{
         }
     }
     
+    func fetchAllFriendRequestFromDB(){
+        guard let user = UserProvider.getInstance.getCurrentUser() else { return }
+        FireStoreUtils.sharedInstance.getAllRequest(user: user) { [weak self] requests in
+            self?.allRequest = requests
+        }
+    }
     func downloadImageFromDB(imageURL : String){
         StorageUtils.sharedInstance.downloadImage(ImageURL: imageURL) {[weak self] data in
             self?.imageData = data

@@ -10,8 +10,19 @@ import UIKit
 
 protocol ReloadTableViewDelegate{
     func reloadDataDelegate()
+    func setFriendRequestsCountDelegate(friendRequestsCount count:Int)
 }
 
 protocol ReloadTableView {
     func reloadData()
+    func setFriendRequestsCount(friendRequestsCount count:Int)
+    func reloadFriends()
+}
+
+protocol DeleteFromTableViewDelegate{
+    func deleteDataDelegate()
+}
+
+protocol DeleteFromTableView{
+    func deleteData()
 }

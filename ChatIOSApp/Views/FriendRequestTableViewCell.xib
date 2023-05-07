@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="request" rowHeight="198" id="KGk-i7-Jjw" customClass="FriendRequestTableViewCell" customModule="ChatIOSApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="381" height="198"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="381" height="198"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fj-xH-h7f">
+                        <rect key="frame" x="20" y="13" width="341" height="173"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B5J-d8-msl">
+                                <rect key="frame" x="8" y="46.666666666666657" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="vuP-oP-g3O"/>
+                                    <constraint firstAttribute="width" constant="80" id="xlh-2Z-C8S"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcZ-ro-bkA">
+                                <rect key="frame" x="96" y="91.666666666666671" width="110.66666666666669" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup.circle" catalog="system" title="confirm">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="baseForegroundColor" red="0.095827233547669519" green="0.88163066979386262" blue="0.021267692444931711" alpha="0.77165212062810429" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onConfirmSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="24X-o7-uX4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-LR-PH4">
+                                <rect key="frame" x="229.66666666666666" y="91.666666666666671" width="94.333333333333343" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="hand.thumbsdown.circle" catalog="system" title="reject">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="onRejectSelected:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kC5-md-pEX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJm-vh-OUn">
+                                <rect key="frame" x="115" y="46.666666666666664" width="192" height="30.999999999999993"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="6Pg-kc-3lS"/>
+                                    <constraint firstAttribute="width" constant="192" id="h8z-4S-HkG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53381013870000005" green="0.69543772940000004" blue="0.8206428885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="rcZ-ro-bkA" firstAttribute="bottom" secondItem="B5J-d8-msl" secondAttribute="bottom" id="1q4-R9-v1D"/>
+                            <constraint firstItem="oJm-vh-OUn" firstAttribute="top" secondItem="B5J-d8-msl" secondAttribute="top" id="AeM-Pw-H8f"/>
+                            <constraint firstItem="J0H-LR-PH4" firstAttribute="bottom" secondItem="rcZ-ro-bkA" secondAttribute="bottom" id="HcR-gk-bbF"/>
+                            <constraint firstItem="oJm-vh-OUn" firstAttribute="leading" secondItem="B5J-d8-msl" secondAttribute="trailing" constant="27" id="Kg7-H1-lrA"/>
+                            <constraint firstItem="J0H-LR-PH4" firstAttribute="leading" secondItem="rcZ-ro-bkA" secondAttribute="trailing" constant="23" id="MUS-T1-8Hl"/>
+                            <constraint firstItem="B5J-d8-msl" firstAttribute="leading" secondItem="3fj-xH-h7f" secondAttribute="leading" constant="8" id="UT8-LJ-t4R"/>
+                            <constraint firstItem="rcZ-ro-bkA" firstAttribute="leading" secondItem="B5J-d8-msl" secondAttribute="trailing" constant="8" symbolic="YES" id="ckS-Wi-08u"/>
+                            <constraint firstItem="B5J-d8-msl" firstAttribute="centerY" secondItem="3fj-xH-h7f" secondAttribute="centerY" id="llK-Em-ZqH"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.1735738218" green="0.42112189529999999" blue="0.601797998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3fj-xH-h7f" secondAttribute="bottom" constant="12" id="8Qu-Sp-VJH"/>
+                    <constraint firstItem="3fj-xH-h7f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="NNt-uT-WUn"/>
+                    <constraint firstItem="3fj-xH-h7f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="inh-M4-ciX"/>
+                    <constraint firstAttribute="trailing" secondItem="3fj-xH-h7f" secondAttribute="trailing" constant="20" id="rDB-sd-JJu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="item" destination="3fj-xH-h7f" id="uom-ni-Mt5"/>
+                <outlet property="userImage" destination="B5J-d8-msl" id="lha-BN-zW4"/>
+                <outlet property="userName" destination="oJm-vh-OUn" id="EI7-ZR-sTZ"/>
+            </connections>
+            <point key="canvasLocation" x="-132.06106870229007" y="-23.943661971830988"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="hand.thumbsdown.circle" catalog="system" width="128" height="123"/>
+        <image name="hand.thumbsup.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

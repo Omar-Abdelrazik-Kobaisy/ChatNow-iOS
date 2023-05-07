@@ -10,6 +10,7 @@ struct Constant {
     static let FRIEND_COLLECTION_REFERENCE = "friends"
     static let MESSAGE_COLLECTION_REFERENCE = "messages"
     static let PRIVATEROOM_COLLECTION_REFERENCE = "privateRoom"
+    static let REQUEST_COLLECTION_REFERENCE = "request"
     static let ADD_FRIEND_IMAGE = "person.badge.plus"
     static let CREATE_GROUP_IMAGE = "person.3.sequence"
     static let SETTINGS_IMAGE = "gearshape"

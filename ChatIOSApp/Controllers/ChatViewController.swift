@@ -14,12 +14,13 @@ class ChatViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
 
+    @IBOutlet weak var bg: UIImageView!
     
     @IBOutlet weak var messageTF: UITextField!
     
 
     var chatViewModel : ChatViewModel?
-    var menuDelegate : ChatControllerDelegate?
+    var menuDelegate : ReloadTableView?
     var menu : UIMenu?
     var userName : String?
     var friend : User?
@@ -136,13 +137,39 @@ extension ChatViewController : UITableViewDelegate
 
 extension ChatViewController : ChatViewModelDelegate {
     func onRemoveFriendSelected() {
-//        menuDelegate?.removeFriendSelected()
+        
+        guard let friend = friend else { return }
         print("onRemoveFriendSelected")
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            //remove from db
+            //pop to previous view
+            //reload table ,--> this will done in will appear of homeVC
+            
+            chatViewModel?.remove(FriendFromDB: friend, onCompleteRemoveFriend: {
+                self.navigationController?.popViewController(animated: true)
+            })
+        }else{
+            //remove from db
+            //delegate to split and from split delegate to home
+            //implement reload table by reload or fetch from db
+            chatViewModel?.remove(FriendFromDB: friend, onCompleteRemoveFriend: { [weak self] in
+                self?.menuDelegate?.reloadFriends()
+            })
+        }
     }
     
     func onAboutFriendSelected() {
 //        menuDelegate?.aboutFriendSelected()
         print("onAboutFriendSeleted")
+        let friendDetailsVC = FriendDetailsViewController(nibName: "FriendDetailsViewController", bundle: nil)
+        friendDetailsVC.friend = friend
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.present(friendDetailsVC, animated: true)
+        }else{
+            self.navigationController?.pushViewController(friendDetailsVC, animated: true)
+        }
+        
+        
     }
     
     

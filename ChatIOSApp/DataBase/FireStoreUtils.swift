@@ -154,4 +154,52 @@ class FireStoreUtils {
             }
         })
     }
+    
+    
+    func makeRequest(request : Request , to friend : User , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let requestDOC_REF = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(friend.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).document()
+        request.id = requestDOC_REF?.documentID
+        requestDOC_REF?.setData(ModelController().convert(from: request).toDictionary,completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
+    
+    func getAllRequest(user : User , onCompleteDelegate : @escaping ([Request])->(Void)){
+        
+        var requests : [Request] = []
+        
+        db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).addSnapshotListener({ querySnapShot, error in
+            if let e = error {
+                //fail
+                print("fail to get Requset \(e.localizedDescription)")
+            }else{
+                //success
+                guard let querySnapShot = querySnapShot else{ return }
+                for doc in querySnapShot.documentChanges{
+                    guard let requset = ModelController().convert(dictionary: doc.document.data(), ToObj: Request()) else{ return }
+                    if doc.type == .added {
+                        requests.append(requset)
+                    }
+                    if doc.type == .removed {
+                        print(ModelController().convert(from: requset).toDictionary)
+                        doc.document.reference.delete()
+                    }
+                }
+                onCompleteDelegate(requests)
+            }
+        })
+    }
+    
+    func deleteRequest(user : User , requestId : String , onCompleteDelegate : @escaping (Error?)->(Void)){
+        db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.REQUEST_COLLECTION_REFERENCE).document(requestId).delete(completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
+    
+    func deleteFriend(user : User , friend : User , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let friendCollectionRef = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.FRIEND_COLLECTION_REFERENCE)
+        friendCollectionRef?.document(friend.id ?? "").delete(completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
 }

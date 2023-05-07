@@ -79,4 +79,16 @@ class AddFriendViewMidel {
             }
         }
     }
+    
+    func sendRequest(request req :Request , to friend : User){
+        FireStoreUtils.sharedInstance.makeRequest(request: req, to: friend) { [weak self] error in
+            if let e = error {
+                //fail
+                self?.navigator?.showAlert(title: "Request_Status", message: "error : \(e.localizedDescription)", onActionClick: nil)
+            }else{
+                //success
+                print("Request send to \(friend.userName ?? "")")
+            }
+        }
+    }
 }

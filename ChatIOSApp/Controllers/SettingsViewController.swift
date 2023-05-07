@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var themeSwitcher: UISegmentedControl!
     
+    @IBOutlet weak var bg: UIImageView!
     var settingsViewModel : SettingsViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,12 +78,22 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func onThemeSwitch(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex == 1 {
-            UserDefaults.standard.set(true, forKey: "Theme")
-        }else{
-            UserDefaults.standard.set(false, forKey: "Theme")
+        
+        let scenes = UIApplication.shared.connectedScenes.map{
+            $0 as? UIWindowScene
         }
         
+        _ = scenes.map{
+            $0?.windows.forEach { window in
+                if sender.selectedSegmentIndex == 1 {
+                    window.overrideUserInterfaceStyle = .light
+                    UserDefaults.standard.set(true, forKey: "Theme")
+                }else{
+                    window.overrideUserInterfaceStyle = .dark
+                    UserDefaults.standard.set(false, forKey: "Theme")
+                }
+            }
+        }
     }
     
     @IBAction func onAboutAppBTN(_ sender: Any) {
