@@ -202,4 +202,18 @@ class FireStoreUtils {
             onCompleteDelegate(error)
         })
     }
+    
+    func addGroup(_ group : Group , to user : User , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let groupCollectionREF = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.GROUP_COLLECTION_REFERENCE)
+        let groupDOC_REF = groupCollectionREF?.document()
+        group.id = groupDOC_REF?.documentID
+        groupDOC_REF?.setData(ModelController().convert(from: group).toDictionary,completion: { error in
+            onCompleteDelegate(error)
+        })
+    }
+    
+    
+    func createGroupChat(){
+        
+    }
 }

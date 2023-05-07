@@ -11,12 +11,18 @@ class CreateGroupViewController: BaseViewController {
 
     @IBOutlet weak var groupNameTF: UITextField!
     
+    @IBOutlet weak var groupDescTF: UITextField!
+    
+    @IBOutlet weak var groupImage: UIImageView!
+    var viewModel : CreateGroupViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textFieldStyle(tf: groupNameTF, color: .systemBlue, placeHolder: "enter")
-    }
+        viewModel = CreateGroupViewModel()
+        viewModel?.navigator = self
+        viewModel?.createGroupInfo = (groupNameTF , groupDescTF , groupImage)
+    } 
     
 
     /*

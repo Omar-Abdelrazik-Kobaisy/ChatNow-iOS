@@ -20,6 +20,8 @@
 		074334C529F264B20051FA8C /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074334C429F264B20051FA8C /* CreateGroupViewController.swift */; };
 		074334C729F264C60051FA8C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074334C629F264C60051FA8C /* SettingsViewController.swift */; };
 		074334C929F292DB0051FA8C /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074334C829F292DB0051FA8C /* Menu.swift */; };
+		0754D4B62A0819C0002B0E92 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0754D4B52A0819C0002B0E92 /* Group.swift */; };
+		0754D4B82A082F49002B0E92 /* CreateGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0754D4B72A082F49002B0E92 /* CreateGroupViewModel.swift */; };
 		075AE37729EC6D3900A92C32 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 075AE37629EC6D3900A92C32 /* FirebaseStorage */; };
 		075AE37929ECAF4200A92C32 /* RegisterNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AE37829ECAF4200A92C32 /* RegisterNavigator.swift */; };
 		075AE37D29ECF3C200A92C32 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AE37C29ECF3C200A92C32 /* UserDetailsViewModel.swift */; };
@@ -119,6 +121,8 @@
 		074334C429F264B20051FA8C /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		074334C629F264C60051FA8C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		074334C829F292DB0051FA8C /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		0754D4B52A0819C0002B0E92 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		0754D4B72A082F49002B0E92 /* CreateGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewModel.swift; sourceTree = "<group>"; };
 		075AE37829ECAF4200A92C32 /* RegisterNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNavigator.swift; sourceTree = "<group>"; };
 		075AE37C29ECF3C200A92C32 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
 		075AE37E29ECF43C00A92C32 /* UserDetailsViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewDelegate.swift; sourceTree = "<group>"; };
@@ -247,6 +251,7 @@
 				071D0FFA29FB0D5B009F3937 /* Message.swift */,
 				077EEA1329FB9853003D3662 /* PrivateRooms.swift */,
 				07D988CF2A044B1D0063E753 /* Request.swift */,
+				0754D4B52A0819C0002B0E92 /* Group.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				07EEE55B29F6DEE70061CABA /* AddFriendViewModel.swift */,
 				07B4346C29FE34600034527D /* SettingsViewModel.swift */,
 				07D988D12A045B150063E753 /* FriendRequestViewModel.swift */,
+				0754D4B72A082F49002B0E92 /* CreateGroupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -611,6 +617,7 @@
 				07B4346D29FE34600034527D /* SettingsViewModel.swift in Sources */,
 				078AA97229EFBB41008FF544 /* HomeTableViewCell.swift in Sources */,
 				071D0FFB29FB0D5B009F3937 /* Message.swift in Sources */,
+				0754D4B82A082F49002B0E92 /* CreateGroupViewModel.swift in Sources */,
 				07B4346B29FE23B30034527D /* AboutViewController.swift in Sources */,
 				07D988D82A0494550063E753 /* FriendRequestTableViewDelegate.swift in Sources */,
 				07D5E3302A0712F700216A59 /* FriendDetailsViewController.swift in Sources */,
@@ -620,6 +627,7 @@
 				07C0CCBD29F0E81700219F10 /* SecondaryViewController.swift in Sources */,
 				077EEA1729FB9B65003D3662 /* ModelController.swift in Sources */,
 				075AE38429ED1ADC00A92C32 /* User.swift in Sources */,
+				0754D4B62A0819C0002B0E92 /* Group.swift in Sources */,
 				07C0CCB929F0A0CD00219F10 /* AddFriendViewController.swift in Sources */,
 				07B4346429FDC8D00034527D /* SenderTableViewCell.swift in Sources */,
 				076BCF9929EF8B6900D2C06D /* SplitViewController.swift in Sources */,
