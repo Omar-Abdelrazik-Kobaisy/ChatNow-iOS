@@ -48,13 +48,13 @@ class ChatViewModel {
     func configureUI(){
         navigator?.textFieldStyle(tf: chatUI?.message, color: .systemBlue, placeHolder: "enter your message")
         
-        if UserDefaults.standard.bool(forKey: "Theme")
-        {
-            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
-        }else{
-            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "dark-bg"))
-        }
+//        if UserDefaults.standard.bool(forKey: "Theme")
+//        {
 //            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
+//        }else{
+//            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "dark-bg"))
+//        }
+            chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
             
         
         

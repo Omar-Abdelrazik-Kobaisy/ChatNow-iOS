@@ -14,6 +14,7 @@ class ChatViewController: BaseViewController {
     @IBOutlet weak var tableView: UITableView!
     
 
+    @IBOutlet weak var bg: UIImageView!
     
     @IBOutlet weak var messageTF: UITextField!
     
@@ -143,6 +144,15 @@ extension ChatViewController : ChatViewModelDelegate {
     func onAboutFriendSelected() {
 //        menuDelegate?.aboutFriendSelected()
         print("onAboutFriendSeleted")
+        let friendDetailsVC = FriendDetailsViewController(nibName: "FriendDetailsViewController", bundle: nil)
+        friendDetailsVC.friend = friend
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.present(friendDetailsVC, animated: true)
+        }else{
+            self.navigationController?.pushViewController(friendDetailsVC, animated: true)
+        }
+        
+        
     }
     
     
