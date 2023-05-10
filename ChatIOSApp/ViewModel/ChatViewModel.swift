@@ -19,6 +19,7 @@ class ChatViewModel {
     
     var bindingRooms : (([PrivateRoom])->(Void)) = {_ in}
     var bindingMessages : (([Message])->(Void)) = {_ in}
+    var bindingGroupMessages : ([GroupMessage])->(Void) = {_ in}
     
     var rooms : [PrivateRoom] = []{
         didSet{
@@ -34,15 +35,26 @@ class ChatViewModel {
         }
     }
     
+    var groupMessages : [GroupMessage] = []{
+        didSet{
+            //binding
+            bindingGroupMessages(groupMessages)
+        }
+    }
     
-    init(viewModelDelegate : ChatViewModelDelegate , navigator : BaseNavigator){
+    
+    init(viewModelDelegate : ChatViewModelDelegate , navigator : BaseNavigator , group : Group? = nil){
         self.viewModelDelegate = viewModelDelegate
         self.navigator = navigator
         let removeFriend = RemoveFriendItem(title:"Remove",image: UIImage(systemName: Constant.REMOVE_IMAGE),chatNavigator: self)
         let aboutFriend = AboutFriendItem(title : "About", image : UIImage(systemName: Constant.FRIEND_DETAILS) , chatNavigator: self)
-        
-        
-        menuItems.append(contentsOf: [removeFriend , aboutFriend])
+        if group != nil{
+            let addPeople = AddPeople(title: "addPeople" , image: UIImage(systemName: Constant.ADD_PEOPLE_IMAGE) , chatNavigator: self)
+            menuItems.append(contentsOf: [removeFriend , aboutFriend , addPeople])
+        }else{
+            
+            menuItems.append(contentsOf: [removeFriend , aboutFriend])
+        }
     }
     
     func configureUI(){
@@ -50,21 +62,34 @@ class ChatViewModel {
             chatUI?.tableV.backgroundView = UIImageView(image: UIImage(named: "chat_imge_bg"))
     }
     
-    func addMessageToDB(from user : User ,to friend : User , rooms : [PrivateRoom]?){
-        let message =
-        Message(content: chatUI?.message.text
-            ,senderId: user.id
-            ,senderName: user.userName
-                ,recieverId: friend.id , recieverName: friend.userName
-                ,dateTime: getCurrentDate())
-              
-        FireStoreUtils.sharedInstance.sendMessage(message, from: user , to: friend , rooms: rooms ) { [weak self] error in
-            if let e = error{
-                //fail
-                self?.navigator?.showAlert(title: "Send Message", message: "error : \(e.localizedDescription)", onActionClick: nil)
-            }else{
-                //success
-                self?.chatUI?.message.text = ""
+    func addMessageToDB(from user : User ,to friend : User , rooms : [PrivateRoom]?, group : Group? = nil){
+        if let group = group{
+            let message = GroupMessage(groupName: group.name, groupID: group.id ,content:chatUI?.message.text  ,dateTime: getCurrentDate() , senderName: user.userName , senderID: user.id)
+            FireStoreUtils.sharedInstance.send(message, to: group) {[weak self] error in
+                if let e = error {
+                    //fail
+                    self?.navigator?.showAlert(title: "Send Message", message: "error : \(e.localizedDescription)", onActionClick: nil)
+                }else{
+                    //success
+                    self?.chatUI?.message.text = ""
+                }
+            }
+        }else{
+            let message =
+            Message(content: chatUI?.message.text
+                    ,senderId: user.id
+                    ,senderName: user.userName
+                    ,recieverId: friend.id , recieverName: friend.userName
+                    ,dateTime: getCurrentDate())
+            
+            FireStoreUtils.sharedInstance.sendMessage(message, from: user , to: friend , rooms: rooms ) { [weak self] error in
+                if let e = error{
+                    //fail
+                    self?.navigator?.showAlert(title: "Send Message", message: "error : \(e.localizedDescription)", onActionClick: nil)
+                }else{
+                    //success
+                    self?.chatUI?.message.text = ""
+                }
             }
         }
     }
@@ -82,6 +107,12 @@ class ChatViewModel {
     func getAllMessagesFromDB(roomID : String){
         FireStoreUtils.sharedInstance.getAllMessages(roomID: roomID) {[weak self] messages in
             self?.messages = messages
+        }
+    }
+    
+    func getAllGroupMessageFromDB(group : Group){
+        FireStoreUtils.sharedInstance.getAllGroupMessage(group) { [weak self] groupMessages in
+            self?.groupMessages = groupMessages
         }
     }
     
@@ -162,6 +193,10 @@ class ChatViewModel {
 }
 
 extension ChatViewModel : ChatMenuNavigator {
+    func addPeople() {
+        viewModelDelegate?.onAddPeopleSelected()
+    }
+    
     func removeFreind() {
         viewModelDelegate?.onRemoveFriendSelected()
     }

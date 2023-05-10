@@ -22,6 +22,7 @@ protocol HomeViewModelNavigator {
 }
 protocol HomeControllerDelegate : AnyObject {
     func didTapItem(index : Int , friend : User)
+    func didTapItem(index : Int , group : Group)
     func AddFriendSelected()
     func CreateGroupSelected()
     func SettingsSelected()

@@ -28,6 +28,14 @@ class HomeViewModel: MenuNavigator{
     var bindingFriends : ([User])->(Void) = {_ in}
     var bindingImageData : ((Data?)->(Void)) = {_ in}
     var bindingAllRequest : (([Request])->(Void)) = {_ in}
+    var bindingAllGroupChat : ([Group])->(Void) = {_ in}
+    
+    var groups : [Group] = []{
+        didSet{
+            //boinding
+            bindingAllGroupChat(groups)
+        }
+    }
     
     var allRequest : [Request] = [] {
         didSet{
@@ -77,6 +85,12 @@ class HomeViewModel: MenuNavigator{
         guard let user = UserProvider.getInstance.getCurrentUser() else { return }
         FireStoreUtils.sharedInstance.getAllRequest(user: user) { [weak self] requests in
             self?.allRequest = requests
+        }
+    }
+    
+    func fetchAllGroupChatFromDB(){
+        FireStoreUtils.sharedInstance.getAllGroupChatForSpecificUser {[weak self] group in
+            self?.groups = group
         }
     }
     func downloadImageFromDB(imageURL : String){

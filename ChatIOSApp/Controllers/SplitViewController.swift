@@ -16,8 +16,6 @@ class SplitViewController: UISplitViewController{
     var secondaryVC : SecondaryViewController!
     
     var reloadDelegate : ReloadTableViewDelegate?
-//    var deleteDelegate : DeleteFromTableViewDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +46,15 @@ class SplitViewController: UISplitViewController{
 }
 
 extension SplitViewController : HomeControllerDelegate {
+    func didTapItem(index: Int, group: Group) {
+        (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
+        let ChatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+        ChatVC.group = group
+        (self.viewControllers.last as? UINavigationController)?.pushViewController(ChatVC, animated: true)
+        ChatVC.menuDelegate = self
+//        ChatVC.reload = self
+    }
+    
     func FriendRequestSelected() {
         (self.viewControllers.last as? UINavigationController)?.popToRootViewController(animated: true)
         let friendRequestVC = self.storyboard?.instantiateViewController(withIdentifier: "FriendRequestViewController") as! FriendRequestViewController
@@ -69,6 +76,7 @@ extension SplitViewController : HomeControllerDelegate {
         let createGroupVC = self.storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         
         (self.viewControllers.last as? UINavigationController)?.pushViewController(createGroupVC, animated: true)
+//        createGroupVC.loadGroupChat = self
     }
     
     func SettingsSelected() {
@@ -111,6 +119,11 @@ extension SplitViewController : HomeControllerDelegate {
     
 }
 extension SplitViewController : ReloadTableView {
+//    func getAllGroupChat() {
+//        reloadDelegate = primaryVC
+//        reloadDelegate?.getAllGroupChatDelegate()
+//    }
+    
     func reloadFriends() {
         reloadDelegate = primaryVC
         reloadDelegate?.reloadDataDelegate()
@@ -127,5 +140,10 @@ extension SplitViewController : ReloadTableView {
         reloadDelegate?.reloadDataDelegate()
     }
 }
-
+//extension SplitViewController : ReloadGroupsDelegate {
+//    func getAllGroupChatDelegate() {
+//        reloadDelegate = primaryVC
+//        reloadDelegate?.getAllGroupChatDelegate()
+//    }
+//}
 

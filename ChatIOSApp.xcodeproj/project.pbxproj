@@ -29,6 +29,7 @@
 		075AE38229ECF64B00A92C32 /* FireBaseStorageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AE38129ECF64B00A92C32 /* FireBaseStorageUtils.swift */; };
 		075AE38429ED1ADC00A92C32 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AE38329ED1ADC00A92C32 /* User.swift */; };
 		075AE38829ED1E3800A92C32 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AE38729ED1E3800A92C32 /* BaseViewController.swift */; };
+		07603C302A0A4BF500335726 /* GroupMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07603C2F2A0A4BF500335726 /* GroupMessage.swift */; };
 		076BCF8B29EF4C4F00D2C06D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BCF8A29EF4C4F00D2C06D /* HomeViewController.swift */; };
 		076BCF9529EF7EA900D2C06D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BCF9429EF7EA900D2C06D /* ContainerViewController.swift */; };
 		076BCF9729EF8A0400D2C06D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076BCF9629EF8A0400D2C06D /* UIViewControllerExtension.swift */; };
@@ -129,6 +130,7 @@
 		075AE38129ECF64B00A92C32 /* FireBaseStorageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseStorageUtils.swift; sourceTree = "<group>"; };
 		075AE38329ED1ADC00A92C32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		075AE38729ED1E3800A92C32 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		07603C2F2A0A4BF500335726 /* GroupMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupMessage.swift; sourceTree = "<group>"; };
 		076BCF8A29EF4C4F00D2C06D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		076BCF9429EF7EA900D2C06D /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		076BCF9629EF8A0400D2C06D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				077EEA1329FB9853003D3662 /* PrivateRooms.swift */,
 				07D988CF2A044B1D0063E753 /* Request.swift */,
 				0754D4B52A0819C0002B0E92 /* Group.swift */,
+				07603C2F2A0A4BF500335726 /* GroupMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				07DC213F29F4C1D600C71797 /* UserProvider.swift in Sources */,
 				07C0CCBD29F0E81700219F10 /* SecondaryViewController.swift in Sources */,
 				077EEA1729FB9B65003D3662 /* ModelController.swift in Sources */,
+				07603C302A0A4BF500335726 /* GroupMessage.swift in Sources */,
 				075AE38429ED1ADC00A92C32 /* User.swift in Sources */,
 				0754D4B62A0819C0002B0E92 /* Group.swift in Sources */,
 				07C0CCB929F0A0CD00219F10 /* AddFriendViewController.swift in Sources */,

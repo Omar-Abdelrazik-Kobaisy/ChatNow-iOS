@@ -203,17 +203,94 @@ class FireStoreUtils {
         })
     }
     
-    func addGroup(_ group : Group , to user : User , onCompleteDelegate : @escaping (Error?)->(Void)){
-        let groupCollectionREF = db?.collection(Constant.USER_COLLECTION_REFERENCE).document(user.id ?? "").collection(Constant.GROUP_COLLECTION_REFERENCE)
-        let groupDOC_REF = groupCollectionREF?.document()
+    func createGroupChat(_ group : Group , onCompleteDelegate : @escaping (Error?)->(Void)){
+        let groupDOC_REF = db?.collection(Constant.GROUP_COLLECTION_REFERENCE).document()
         group.id = groupDOC_REF?.documentID
-        groupDOC_REF?.setData(ModelController().convert(from: group).toDictionary,completion: { error in
+        groupDOC_REF?.setData(ModelController().convert(from: group).toDictionary ,completion: { error in
             onCompleteDelegate(error)
         })
     }
+    func add(friend user : User ,toGroup group:Group , onCompleteDelegate : @escaping(Error?)->(Void)){
+        db?.collection(Constant.GROUP_COLLECTION_REFERENCE).document(group.id ?? "").updateData(
+            ["users" : FieldValue.arrayUnion([ModelController().convert(from: user).toDictionary])] , completion: { error in
+                onCompleteDelegate(error)
+            })
+//            .addSnapshotListener({ querySnapshot, error in
+//            if let e = error{
+//                //fail
+//                print("error while update \(e.localizedDescription)")
+//            }else{
+//                //success
+//                guard let querySnapshot = querySnapshot else {return}
+//                querySnapshot.documentChanges.forEach { doc in
+//                    if doc.document.documentID == group.id ?? ""{
+//                        doc.document.reference.updateData(
+//                            ["users" : FieldValue.arrayUnion([ModelController().convert(from: user).toDictionary])] , completion: { error in
+//                                onCompleteDelegate(error)
+//                            })
+//                    }
+//                }
+//            }
+//        })
+    }
+    func send(_ message :GroupMessage ,to group:Group , onCompleteDelegete : @escaping (Error?)->(Void)){
+        let messageDOC_REF = db?.collection(Constant.GROUP_COLLECTION_REFERENCE).document(group.id ?? "").collection(Constant.MESSAGE_COLLECTION_REFERENCE).document()
+        message.id = messageDOC_REF?.documentID
+        messageDOC_REF?.setData(ModelController().convert(from: message).toDictionary,completion: { error in
+            onCompleteDelegete(error)
+        })
+    }
     
-    
-    func createGroupChat(){
+    func getAllGroupMessage(_ group : Group , onCompleteDelegete : @escaping ([GroupMessage])->(Void)){
         
+        var groupMessageArr : [GroupMessage] = []
+        
+        db?.collection(Constant.GROUP_COLLECTION_REFERENCE).document(group.id ?? "").collection(Constant.MESSAGE_COLLECTION_REFERENCE).addSnapshotListener({ querySnapShotListener, error in
+            if let e = error{
+                //fail
+                print("error in sending message to group \(e.localizedDescription)")
+            }else{
+                //success
+                guard let querySnapShotListener = querySnapShotListener else { return }
+                querySnapShotListener.documentChanges.forEach { doc in
+                    if doc.type == .added{
+                        guard let message = ModelController().convert(dictionary: doc.document.data(), ToObj: GroupMessage())else{return}
+                        groupMessageArr.append(message)
+                    }
+                }
+            }
+            onCompleteDelegete(groupMessageArr)
+        })
+    }
+    
+    func getAllGroupChatForSpecificUser(onCompleteDelegate : @escaping ([Group])->(Void)){
+        var groupChatArray : [Group] = []
+        db?.collection(Constant.GROUP_COLLECTION_REFERENCE).addSnapshotListener({ querySnapshot, error in
+            if let e = error{
+                //fail
+                print("fail to get groups \(e.localizedDescription)")
+            }else{
+                //success
+                guard let doumentsChanges = querySnapshot?.documentChanges else { return }
+                for doc in doumentsChanges {
+                    if doc.type == .added {
+                        guard let group = ModelController().convert(dictionary: doc.document.data(), ToObj: Group())else {return}
+                        guard let users = group.users else { return }
+                        guard let currentUser = UserProvider.getInstance.getCurrentUser() else {return}
+                        for user in users{
+                            if user.id == currentUser.id
+                            {
+                                groupChatArray.append(group)
+                            }
+                        }
+                        
+                    }
+//                    if doc.type == .modified{
+//                        //reload or get
+//                    }
+                }
+                onCompleteDelegate(groupChatArray)
+            }
+        })
     }
 }

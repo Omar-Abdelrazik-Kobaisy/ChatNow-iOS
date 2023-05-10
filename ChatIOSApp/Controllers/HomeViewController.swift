@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController {
     var friendRequestDelegate : HomeControllerDelegate?
     var friendsArray : [User]?
     var requestsArr : [Request]?
+    var groupsArr : [Group]?
     
     var data : Data?
     override func viewDidLoad() {
@@ -64,13 +65,18 @@ class HomeViewController: BaseViewController {
                 self?.tableView.reloadData()
             }
         }
+        homeViewModel?.fetchAllGroupChatFromDB()
+        homeViewModel?.bindingAllGroupChat = {[weak self] groups in
+            self?.groupsArr = groups
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
         homeViewModel?.fetchAllFriendRequestFromDB()
         homeViewModel?.bindingAllRequest = {[weak self] requests in
             self?.requestsArr = requests
             DispatchQueue.main.async {
                 guard let requestsArrCount = self?.requestsArr?.count else { return }
-//                self?.rightBarButton = self?.navigationItem.rightBarButtonItem
-//                rightBarButton?.addBadge(text: "\(requestsArrCount)" , withOffset: CGPoint(x: -50, y: -10))
                 self?.friendRequestBtn.setBadge(text: "\(requestsArrCount)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8))
                 if requestsArrCount == 0 {
                     self?.friendRequestBtn.removeBadge()
@@ -93,29 +99,66 @@ class HomeViewController: BaseViewController {
     }
 }
 extension HomeViewController : UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        friendsArray?.count ?? 0
+        var arrCount = 0
+        switch(section) {
+        case 0:
+            arrCount = friendsArray?.count ?? 0
+        case 1:
+            arrCount = groupsArr?.count ?? 0
+        default:
+            print("error in numberOfRowsInSection in HomeVC")
+        }
+        return arrCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "item", for: indexPath) as! HomeTableViewCell
-        
-        cell.userName.text = friendsArray?[indexPath.row].userName
-        cell.userAbout.text = friendsArray?[indexPath.row].about
-        if let imageREF = StorageUtils.sharedInstance.storageReference?.child(friendsArray?[indexPath.row].imageRef ?? "")  {
-            cell.userImage.sd_setImage(with: imageREF, placeholderImage: UIImage(named: "1"))
-        }else{
-            print(" error in loading image in cell ")
+        switch(indexPath.section)
+        {
+        case 0:
+            cell.userName.text = friendsArray?[indexPath.row].userName
+            cell.userAbout.text = friendsArray?[indexPath.row].about
+            if let imageREF = StorageUtils.sharedInstance.storageReference?.child(friendsArray?[indexPath.row].imageRef ?? "")  {
+                cell.userImage.sd_setImage(with: imageREF, placeholderImage: UIImage(named: "1"))
+            }else{
+                print(" error in loading image in cell ")
+            }
+            
+            cell.messageCount.text = "999"
+        case 1:
+            cell.userName.text = groupsArr?[indexPath.row].name
+            cell.userAbout.text = groupsArr?[indexPath.row].description
+            if let imageREF = StorageUtils.sharedInstance.storageReference?.child(groupsArr?[indexPath.row].imageREF ?? "")  {
+                cell.userImage.sd_setImage(with: imageREF, placeholderImage: UIImage(named: "1"))
+            }else{
+                print(" error in loading image in cell ")
+            }
+            cell.messageCount.text = "23"
+        default:
+            print("error in cellForRowAt in HomeVC")
         }
-        
-        cell.messageCount.text = "999"
-        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
-    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var header = ""
+        switch(section)
+        {
+        case 0:
+            header = "friends"
+        case 1:
+            header = "groups"
+        default:
+            print("error in titleForHeaderINSection in HomeVC")
+        }
+        return header
+    }
 }
 extension HomeViewController : UITableViewDelegate{
     
@@ -123,13 +166,34 @@ extension HomeViewController : UITableViewDelegate{
         tableView.deselectRow(at: IndexPath(row: indexPath.row, section: 0), animated: true)
         if UIDevice.current.userInterfaceIdiom == .pad
         {
-            guard let friend = friendsArray?[indexPath.row] else {
-                return
+            switch(indexPath.section)
+            {
+            case 0:
+                guard let friend = friendsArray?[indexPath.row] else {
+                    return
+                }
+                delegate?.didTapItem(index: indexPath.row , friend: friend)
+            case 1:
+                guard let group = groupsArr?[indexPath.row] else {
+                    return
+                }
+                delegate?.didTapItem(index: indexPath.row, group: group)
+            default:
+                print("error in didSelectRowAt in HOmeVC")
             }
-            delegate?.didTapItem(index: indexPath.row , friend: friend)
+            
         }else{
             let ChatVC = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-            ChatVC.friend = friendsArray?[indexPath.row]
+            switch(indexPath.section)
+            {
+            case 0:
+                ChatVC.friend = friendsArray?[indexPath.row]
+            case 1:
+                ChatVC.group = groupsArr?[indexPath.row]
+            default:
+                print("error in didSelectRowAt in HOmeVC iPhone")
+            }
+            
             self.navigationController?.pushViewController(ChatVC, animated: true)
         }
     }
@@ -202,6 +266,20 @@ extension HomeViewController : HomeViewModelNavigator{
     
 }
 extension HomeViewController : ReloadTableViewDelegate {
+//    func getAllGroupChatDelegate() {
+//        //create function in viewModel getAll Group chat from DB
+//        // binding the GroupChat Array in new section "Groups"then reload Table view
+//        homeViewModel?.fetchAllGroupChatFromDB()
+//        homeViewModel?.bindingAllGroupChat = {[weak self] groups in
+//            self?.groupsArr = groups
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//                self?.view.layoutIfNeeded()
+//                self?.view.setNeedsDisplay()
+//            }
+//        }
+//    }
+    
     func setFriendRequestsCountDelegate(friendRequestsCount count: Int) {
         friendRequestBtn.setBadge(text: "\(count)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8)  )
         if count == 0 {

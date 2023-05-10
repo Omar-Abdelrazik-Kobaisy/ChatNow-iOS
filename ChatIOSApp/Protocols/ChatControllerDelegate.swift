@@ -11,10 +11,12 @@ import Foundation
 protocol ChatMenuNavigator {
     func removeFreind()
     func aboutFriend()
+    func addPeople()
 }
 protocol ChatViewModelDelegate {
     func onRemoveFriendSelected()
     func onAboutFriendSelected()
+    func onAddPeopleSelected()
 }
 protocol ChatControllerDelegate {
     func removeFriendSelected()

@@ -57,6 +57,12 @@ class AboutFriendItem : MenuItem {
     }
 }
 
+class AddPeople: MenuItem{
+    override func MenuItemAction() {
+        chatNavigator?.addPeople()
+    }
+}
+
 class ArabicItem : MenuItem {
     override func MenuItemAction() {
        

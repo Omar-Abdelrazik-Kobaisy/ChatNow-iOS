@@ -18,6 +18,7 @@ struct Constant {
     static let LOGOUT_IMAGE = "escape"
     static let REMOVE_IMAGE = "person.fill.xmark.rtl"
     static let FRIEND_DETAILS = "person.crop.circle.dashed"
+    static let ADD_PEOPLE_IMAGE = "person.crop.circle.fill.badge.plus"
 }
 
 //struct Language {

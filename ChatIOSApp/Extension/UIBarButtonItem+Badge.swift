@@ -28,7 +28,7 @@ extension UIBarButtonItem {
     }
 }
 
-func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.zero, andColor color:UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 20)
+func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.zero, andColor color:UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 15)
 {
     badgeLayer?.removeFromSuperlayer()
 
@@ -39,7 +39,7 @@ func setBadge(text: String?, withOffsetFromTopRight offset: CGPoint = CGPoint.ze
     addBadge(text: text!, withOffset: offset, andColor: color, andFilled: filled)
 }
 
- func addBadge(text: String, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 20)
+ func addBadge(text: String, withOffset offset: CGPoint = CGPoint.zero, andColor color: UIColor = UIColor.red, andFilled filled: Bool = true, andFontSize fontSize: CGFloat = 15)
 {
     guard let view = self.value(forKey: "view") as? UIView else { return }
 

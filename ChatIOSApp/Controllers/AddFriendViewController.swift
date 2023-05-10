@@ -16,8 +16,10 @@ class AddFriendViewController: BaseViewController {
     @IBOutlet weak var addBtn: UIButton!
     var viewModel : AddFriendViewMidel?
     var arr : [User]?
+    var group : Group?
     var privateRoomsArr : [PrivateRoom]?
     var reload : ReloadTableView?
+//    var reloadGroup : ReloadGroups?
     override func viewDidLoad() {
         super.viewDidLoad() 
 
@@ -42,24 +44,36 @@ class AddFriendViewController: BaseViewController {
     
 
     @IBAction func onAddFriend(_ sender: UIButton) {
-        print("clicked")
+            print("clicked")
             guard let currentUser = UserProvider.getInstance.getCurrentUser() else {return}
-        print(currentUser.email ?? "")
+            print(currentUser.email ?? "")
             for user in arr ?? [] {
-//                print("\(String(describing: user.userName))")
+                //                print("\(String(describing: user.userName))")
                 print("\(String(describing: user.id)) --> \(enterFriendIDTF.text ?? "")")
                 if user.id == enterFriendIDTF.text ?? "" {
                     // add friend to fireStore
                     print("\(String(describing: user.userName))")
-                    viewModel?.addFriendToDB(user: currentUser , firend: user , reloadTV : reload)
-                    
-                    let room = PrivateRoom(senderID: currentUser.id , senderEmail: currentUser.email
-                                           , recieverID: user.id , recieverEmail: user.email)
-                    viewModel?.createRoom(rooms : privateRoomsArr, room: room, user: currentUser, friend: user)
-                    let request = Request(requestFromName: currentUser.userName , requestFromId: currentUser.id , requestToName: user.userName , requestToId: user.id , requesrFromImage: currentUser.imageRef)
-                    viewModel?.sendRequest(request: request, to: user)
+                    if let group = group{
+                        // add this user to group
+//                                                                  , reloadTV: reloadGroup
+                        viewModel?.add(friend: user, toGroup: group )
+//                        let request = Request(requestFromName: group.name , requestFromId: group.id , requestToName: user.userName , requestToId: user.id , requesrFromImage: group.imageREF , requestType: .group)
+//                        viewModel?.sendRequest(request: request, to: user)
+                    }else{
+                        viewModel?.addFriendToDB(user: currentUser , firend: user , reloadTV : reload)
+                        
+                        let room = PrivateRoom(senderID: currentUser.id , senderEmail: currentUser.email
+                                               , recieverID: user.id , recieverEmail: user.email)
+                        viewModel?.createRoom(rooms : privateRoomsArr, room: room, user: currentUser, friend: user)
+                        let request = Request(requestFromName: currentUser.userName , requestFromId: currentUser.id , requestToName: user.userName , requestToId: user.id , requesrFromImage: currentUser.imageRef , requestType: .friend)
+                        viewModel?.sendRequest(request: request, to: user)
+                    }
                 }
             }
+            
+        //add people to selected group
+        
+        
     }
     /*
     // MARK: - Navigation

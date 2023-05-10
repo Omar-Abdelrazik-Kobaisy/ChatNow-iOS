@@ -91,4 +91,19 @@ class AddFriendViewMidel {
             }
         }
     }
+//                                                  , reloadTV : ReloadGroups?
+    func add(friend user:User , toGroup group:Group  ){
+        FireStoreUtils.sharedInstance.add(friend: user, toGroup: group) {[weak self] error in
+            if let e = error{
+                //fail
+                self?.navigator?.showAlert(title: "Add \(user.userName ?? "") to \(group.name ?? "")", message: "error : \(e.localizedDescription)", onActionClick: nil)
+            }else{
+                //success
+                self?.navigator?.showAlert(title: "Add \(user.userName ?? "") to \(group.name ?? "")", message: "added Successfully", onActionClick: {
+                    //reload homeVC to get group
+//                    reloadTV?.getAllGroupChat()
+                })
+            }
+        }
+    }
 }

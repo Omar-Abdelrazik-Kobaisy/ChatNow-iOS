@@ -11,18 +11,20 @@ import UIKit
 protocol ReloadTableViewDelegate{
     func reloadDataDelegate()
     func setFriendRequestsCountDelegate(friendRequestsCount count:Int)
+//    func getAllGroupChatDelegate()
 }
 
 protocol ReloadTableView {
     func reloadData()
     func setFriendRequestsCount(friendRequestsCount count:Int)
     func reloadFriends()
+//    func getAllGroupChat()
 }
 
-protocol DeleteFromTableViewDelegate{
-    func deleteDataDelegate()
-}
+//protocol ReloadGroups {
+//    func getAllGroupChat()
+//}
+//protocol ReloadGroupsDelegate {
+//    func getAllGroupChatDelegate()
+//}
 
-protocol DeleteFromTableView{
-    func deleteData()
-}

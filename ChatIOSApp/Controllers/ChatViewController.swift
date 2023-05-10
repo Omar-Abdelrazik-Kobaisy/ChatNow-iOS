@@ -21,19 +21,37 @@ class ChatViewController: BaseViewController {
 
     var chatViewModel : ChatViewModel?
     var menuDelegate : ReloadTableView?
+//    var reload : ReloadGroupsDelegate?
     var menu : UIMenu?
     var userName : String?
     var friend : User?
+    var group : Group?
     var privateRoomsArr : [PrivateRoom]?
     var messagesArr : [Message]?
+    var groupMessagesArr : [GroupMessage]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(UINib(nibName: "SenderTableViewCell", bundle: nil), forCellReuseIdentifier: "SenderTableViewCell")
         tableView.register(UINib(nibName: "RecieverTableViewCell", bundle: nil), forCellReuseIdentifier: "RecieverTableViewCell")
-        
-        chatViewModel = ChatViewModel(viewModelDelegate: self, navigator: self)
+        if let group = group
+        {
+            chatViewModel = ChatViewModel(viewModelDelegate: self, navigator: self , group: group)
+            chatViewModel?.getAllGroupMessageFromDB(group: group)
+            chatViewModel?.bindingGroupMessages = {[weak self] messages in
+                self?.groupMessagesArr = messages
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    guard let messages = self?.groupMessagesArr else { return }
+                    if !messages.isEmpty {
+                        self?.tableView.scrollToRow(at: IndexPath(row: (self?.groupMessagesArr?.count ?? 0)-1, section: 0), at: .bottom, animated: true)
+                    }
+                }
+            }
+        }else{
+            chatViewModel = ChatViewModel(viewModelDelegate: self, navigator: self )
+        }
         chatViewModel?.chatUI = (messageTF , tableView)
         chatViewModel?.configureUI()
         chatViewModel?.getAllPrivateRoomFromDB()
@@ -61,6 +79,8 @@ class ChatViewController: BaseViewController {
                 }
             }
         }
+        
+        
 //        print(messagesArr?.first?.content)
         var menuActions : [UIAction] = []
         
@@ -80,22 +100,33 @@ class ChatViewController: BaseViewController {
         super.viewWillAppear(animated)
 
         self.navigationController?.navigationBar.tintColor = .white
+        if let group = group{
+            self.navigationItem.titleView = chatViewModel?.navTitleWithImageAndText(titleText: group.name ?? "errorNoGroupName", imageName: group.imageREF ?? "errorNoGroupImage")
+        }else{
+            self.navigationItem.titleView = chatViewModel?.navTitleWithImageAndText(titleText: friend?.userName ?? "errorNoName", imageName: friend?.imageRef ?? "errorNoImage")
+        }
         
-        self.navigationItem.titleView = chatViewModel?.navTitleWithImageAndText(titleText: friend?.userName ?? "errorNoName", imageName: friend?.imageRef ?? "errorNoImage")
-        let button1 = UIBarButtonItem(image: UIImage(systemName: "list.bullet.circle") )// action:#selector(Class.MethodName) for swift 3
+        let button1 = UIBarButtonItem(image: UIImage(systemName: "list.bullet.circle") )
         button1.menu = menu
         self.navigationItem.rightBarButtonItem  = button1
     }
     
     @IBAction func onSendBtn(_ sender: UIButton) {
         
-        guard let friend = friend , let user = UserProvider.getInstance.getCurrentUser() else {
-            print("error : NoFriend or NoUserLoggedIn")
+        guard let user = UserProvider.getInstance.getCurrentUser() else {
+            print("error : NoUserLoggedIn")
             return
         }
 //        print(privateRoomsArr?.first?.id)
-        chatViewModel?.addMessageToDB(from: user, to: friend, rooms: privateRoomsArr)
-        
+        if let group = group
+        {
+            chatViewModel?.addMessageToDB(from: user, to: friend ?? User(), rooms: privateRoomsArr , group: group)
+        }else{
+            guard let friend = friend else{
+                print("error : NoFriend ")
+                return}
+            chatViewModel?.addMessageToDB(from: user, to: friend, rooms: privateRoomsArr)
+        }
         
 
     }
@@ -104,11 +135,37 @@ class ChatViewController: BaseViewController {
 extension ChatViewController : UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messagesArr?.count ?? 0
+        var messagCount : Int = 0
+        if let _ = group{
+            messagCount = groupMessagesArr?.count ?? 0
+        }else{
+            messagCount = messagesArr?.count ?? 0
+        }
+        return messagCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
+        if let _ = group {
+            if groupMessagesArr?[indexPath.row].senderID == UserProvider.getInstance.getCurrentUser()?.id {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SenderTableViewCell", for: indexPath) as! SenderTableViewCell
+                
+                cell.senderName.text = groupMessagesArr?[indexPath.row].senderName
+                cell.messageContent.text =  groupMessagesArr?[indexPath.row].content
+                cell.messageDate.text = groupMessagesArr?[indexPath.row].dateTime
+                
+                return cell
+            }
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RecieverTableViewCell", for: indexPath) as! RecieverTableViewCell
+            
+            cell.recieverName.text = groupMessagesArr?[indexPath.row].senderName
+            cell.messageContent.text = groupMessagesArr?[indexPath.row].content
+            cell.messageDate.text = groupMessagesArr?[indexPath.row].dateTime
+            
+            return cell
+        }
+        
         if messagesArr?[indexPath.row].senderId == UserProvider.getInstance.getCurrentUser()?.id {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SenderTableViewCell", for: indexPath) as! SenderTableViewCell
             
@@ -136,6 +193,25 @@ extension ChatViewController : UITableViewDelegate
 }
 
 extension ChatViewController : ChatViewModelDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let addFriendVC = segue.destination as! AddFriendViewController
+        addFriendVC.group = sender as? Group
+//        addFriendVC.reloadGroup = self
+    }
+    func onAddPeopleSelected() {
+        print("onAddPeopleSlected")
+        if UIDevice.current.userInterfaceIdiom == .phone{
+            //present addFriendVC
+            performSegue(withIdentifier: "GoToAddFriend", sender: group)
+        }else{
+            //push to addFriendVC
+            let addFriendVC = self.storyboard?.instantiateViewController(withIdentifier: "AddFriendViewController") as! AddFriendViewController
+            addFriendVC.group = group
+            self.navigationController?.pushViewController(addFriendVC, animated: true)
+//            addFriendVC.reloadGroup = self
+        }
+    }
+    
     func onRemoveFriendSelected() {
         
         guard let friend = friend else { return }
@@ -174,4 +250,9 @@ extension ChatViewController : ChatViewModelDelegate {
     
     
 }
+//extension ChatViewController : ReloadGroups {
+//    func getAllGroupChat() {
+//        reload?.getAllGroupChatDelegate()
+//    }
+//}
 

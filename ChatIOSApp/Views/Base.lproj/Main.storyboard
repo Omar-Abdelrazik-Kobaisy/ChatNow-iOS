@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RhE-Rz-Uyg">
-    <device id="retina6_72" orientation="portrait" appearance="dark"/>
+    <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -473,6 +473,7 @@
                         <outlet property="bg" destination="qCk-Oe-0eT" id="b8b-A4-qJM"/>
                         <outlet property="messageTF" destination="s4D-3I-j0z" id="gkQ-sE-aOC"/>
                         <outlet property="tableView" destination="6dX-Y2-uo6" id="Y7d-BQ-m7m"/>
+                        <segue destination="BiH-dn-tL3" kind="show" identifier="GoToAddFriend" id="xlX-9t-t47"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LJ-zb-XaU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -484,14 +485,14 @@
             <objects>
                 <viewController storyboardIdentifier="AddFriendViewController" id="BiH-dn-tL3" customClass="AddFriendViewController" customModule="ChatIOSApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="95y-hl-4Ym">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_bg" translatesAutoresizingMaskIntoConstraints="NO" id="fbx-wr-YFT">
-                                <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                                <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wRN-L8-1T4">
-                                <rect key="frame" x="16" y="446" width="398" height="40"/>
+                                <rect key="frame" x="16" y="411.66666666666669" width="398" height="40"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -501,7 +502,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQC-DO-wab">
-                                <rect key="frame" x="108" y="638" width="214" height="34.666666666666629"/>
+                                <rect key="frame" x="108" y="603.66666666666663" width="214" height="34.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="ADD"/>
                                 <connections>
@@ -509,7 +510,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter your friendID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYv-h4-KCp">
-                                <rect key="frame" x="16" y="494" width="142.66666666666666" height="21"/>
+                                <rect key="frame" x="16" y="459.66666666666669" width="142.66666666666666" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -533,6 +534,7 @@
                             <constraint firstItem="cPk-pl-ka0" firstAttribute="trailing" secondItem="wRN-L8-1T4" secondAttribute="trailing" constant="16" id="zzN-NU-6DC"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="2Jd-Wv-hEp"/>
                     <connections>
                         <outlet property="addBtn" destination="MQC-DO-wab" id="Psm-aC-BFN"/>
                         <outlet property="enterFriendIDTF" destination="wRN-L8-1T4" id="m6V-gf-a7W"/>
@@ -676,6 +678,9 @@
                                 <rect key="frame" x="71" y="663" width="287" height="34.666666666666629"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="ADD"/>
+                                <connections>
+                                    <action selector="onAddGroupBtn:" destination="EBx-uY-rTi" eventType="touchUpInside" id="oyt-Ny-kje"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GroupName" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FWV-hh-Avi">
                                 <rect key="frame" x="16" y="505" width="398" height="52"/>
@@ -699,6 +704,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="chooseImage:" destination="EBx-uY-rTi" eventType="touchUpInside" id="AXN-KE-O25"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="GroupDescription" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hPd-6K-B8M">
                                 <rect key="frame" x="16" y="583" width="398" height="52"/>
