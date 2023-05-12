@@ -18,8 +18,9 @@ class Message :  Codable {
     var dateTime : String?
     var isRecieved : Bool?
     var roomID : String?
+    var unreadMessage : Int?
     
-    init(id: String? = nil, content: String? = nil, senderId: String? = nil, senderName: String? = nil, recieverId: String? = nil, recieverName: String? = nil, dateTime: String? = nil, isRecieved: Bool? = nil , roomID : String? = nil) {
+    init(id: String? = nil, content: String? = nil, senderId: String? = nil, senderName: String? = nil, recieverId: String? = nil, recieverName: String? = nil, dateTime: String? = nil, isRecieved: Bool? = nil , roomID : String? = nil , unreadMessage : Int? = nil) {
         self.id = id
         self.content = content
         self.senderId = senderId
@@ -29,6 +30,7 @@ class Message :  Codable {
         self.dateTime = dateTime
         self.isRecieved = isRecieved
         self.roomID = roomID
+        self.unreadMessage = unreadMessage
     }
 }
 

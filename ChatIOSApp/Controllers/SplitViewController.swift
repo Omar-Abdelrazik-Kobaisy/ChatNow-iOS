@@ -16,6 +16,7 @@ class SplitViewController: UISplitViewController{
     var secondaryVC : SecondaryViewController!
     
     var reloadDelegate : ReloadTableViewDelegate?
+//    var chatRoomDelegate : ConversationStatusDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -114,6 +115,7 @@ extension SplitViewController : HomeControllerDelegate {
         ChatVC.friend = friend
         (self.viewControllers.last as? UINavigationController)?.pushViewController(ChatVC, animated: true)
         ChatVC.menuDelegate = self
+//        ChatVC.roomDelegate = self
     }
     
     
@@ -146,4 +148,9 @@ extension SplitViewController : ReloadTableView {
 //        reloadDelegate?.getAllGroupChatDelegate()
 //    }
 //}
-
+//extension SplitViewController : ConversationStatus {
+//    func numberOfUnReadMessages(for room: PrivateRoom) {
+//        chatRoomDelegate = primaryVC
+//        chatRoomDelegate?.numberOfUnReadMessagesDelegate(for: room)
+//    }
+//}

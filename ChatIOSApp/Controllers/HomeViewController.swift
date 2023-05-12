@@ -25,6 +25,8 @@ class HomeViewController: BaseViewController {
     var friendsArray : [User]?
     var requestsArr : [Request]?
     var groupsArr : [Group]?
+//    var allPrivateRooms : [PrivateRoom]?
+//    var roomsArr : [PrivateRoom] = []
     
     var data : Data?
     override func viewDidLoad() {
@@ -77,12 +79,26 @@ class HomeViewController: BaseViewController {
             self?.requestsArr = requests
             DispatchQueue.main.async {
                 guard let requestsArrCount = self?.requestsArr?.count else { return }
-                self?.friendRequestBtn.setBadge(text: "\(requestsArrCount)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8))
+                self?.friendRequestBtn.setBadge(text: "\(requestsArrCount)" , withOffsetFromTopRight: CGPoint(x: 5, y: -0.7))
                 if requestsArrCount == 0 {
                     self?.friendRequestBtn.removeBadge()
                 }
             }
         }
+//        homeViewModel?.getAllPrivateRoomFromDB()
+//        homeViewModel?.bindingAllPrivateRooms = {[weak self] rooms in
+//            self?.allPrivateRooms = rooms
+//            for room in self?.allPrivateRooms ?? [] {
+//                if (room.senderID == UserProvider.getInstance.getCurrentUser()?.id)
+//                    || (room.recieverID == UserProvider.getInstance.getCurrentUser()?.id)
+//                {
+//                    self?.roomsArr.append(room)
+//                }
+//            }
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//        }
         
     }
 
@@ -127,8 +143,14 @@ extension HomeViewController : UITableViewDataSource {
             }else{
                 print(" error in loading image in cell ")
             }
-            
-            cell.messageCount.text = "999"
+//            if roomsArr[indexPath.row].unreadMessages ?? 33 > 0{
+//                cell.messageCount.text = String(roomsArr[indexPath.row].unreadMessages ?? 33)
+//            }else{
+//                //hide
+//                cell.messageCount.isHidden = true
+//            }
+            cell.messageCount.isHidden = true
+//            cell.messageCount.text = "999"
         case 1:
             cell.userName.text = groupsArr?[indexPath.row].name
             cell.userAbout.text = groupsArr?[indexPath.row].description
@@ -137,7 +159,8 @@ extension HomeViewController : UITableViewDataSource {
             }else{
                 print(" error in loading image in cell ")
             }
-            cell.messageCount.text = "23"
+//            cell.messageCount.text = "23"
+            cell.messageCount.isHidden = true
         default:
             print("error in cellForRowAt in HomeVC")
         }
@@ -281,7 +304,7 @@ extension HomeViewController : ReloadTableViewDelegate {
 //    }
     
     func setFriendRequestsCountDelegate(friendRequestsCount count: Int) {
-        friendRequestBtn.setBadge(text: "\(count)" , withOffsetFromTopRight: CGPoint(x: 5, y: -8)  )
+        friendRequestBtn.setBadge(text: "\(count)" , withOffsetFromTopRight: CGPoint(x: 5, y: -0.7)  )
         if count == 0 {
             friendRequestBtn.removeBadge()
         }
@@ -297,6 +320,31 @@ extension HomeViewController : ReloadTableViewDelegate {
             }
         }
     }
-    
-    
 }
+//extension HomeViewController : ConversationStatusDelegate {
+//    func numberOfUnReadMessagesDelegate(for room: PrivateRoom) {
+//        room.isRecieved = true
+//        homeViewModel?.fetchAllFriendFromDB()
+//        homeViewModel?.bindingFriends = {[weak self] friends in
+//            self?.friendsArray = friends
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//
+//            }
+//        }
+//        homeViewModel?.getAllPrivateRoomFromDB()
+//        homeViewModel?.bindingAllPrivateRooms = {[weak self] privateRooms in
+//            self?.allPrivateRooms = privateRooms
+//            for room in self?.allPrivateRooms ?? [] {
+//                if (room.senderID == UserProvider.getInstance.getCurrentUser()?.id)
+//                    || ( room.recieverID == UserProvider.getInstance.getCurrentUser()?.id)
+//                {
+//                    self?.roomsArr.append(room)
+//                }
+//            }
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//        }
+//    }
+//}

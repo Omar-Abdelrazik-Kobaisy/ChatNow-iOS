@@ -21,11 +21,13 @@ class ChatViewController: BaseViewController {
 
     var chatViewModel : ChatViewModel?
     var menuDelegate : ReloadTableView?
+//    var roomDelegate : ConversationStatus?
 //    var reload : ReloadGroupsDelegate?
     var menu : UIMenu?
     var userName : String?
     var friend : User?
     var group : Group?
+//    var currentRoom : PrivateRoom?
     var privateRoomsArr : [PrivateRoom]?
     var messagesArr : [Message]?
     var groupMessagesArr : [GroupMessage]?
@@ -62,7 +64,8 @@ class ChatViewController: BaseViewController {
                     || room.senderID == self?.friend?.id)
                     && (room.recieverID == self?.friend?.id || room.recieverID == UserProvider.getInstance.getCurrentUser()?.id)
                 {
-                    self?.chatViewModel?.getAllMessagesFromDB(roomID: room.id ?? "")
+                    self?.chatViewModel?.getAllMessagesFromDB(room : room)
+//                    self?.currentRoom = room
                     break;
                 }
             }
@@ -126,6 +129,9 @@ class ChatViewController: BaseViewController {
                 print("error : NoFriend ")
                 return}
             chatViewModel?.addMessageToDB(from: user, to: friend, rooms: privateRoomsArr)
+            // update
+//            print(currentRoom?.id)
+//            chatViewModel?.updatePrivateRoom(room: currentRoom!)
         }
         
 

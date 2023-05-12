@@ -104,12 +104,23 @@ class ChatViewModel {
             }
         }
     }
-    func getAllMessagesFromDB(roomID : String){
-        FireStoreUtils.sharedInstance.getAllMessages(roomID: roomID) {[weak self] messages in
+    func getAllMessagesFromDB(room : PrivateRoom){
+        FireStoreUtils.sharedInstance.getAllMessages(room: room) {[weak self] messages in
             self?.messages = messages
         }
     }
     
+//    func updatePrivateRoom(room : PrivateRoom){
+//        FireStoreUtils.sharedInstance.updatePrivateRoom(room: room) {[weak self] error in
+//            if let e = error {
+//                //fail
+//                self?.navigator?.showAlert(title: "updateRoom", message: "error : \(e.localizedDescription)", onActionClick: nil)
+//            }else{
+//                //success
+//                print("ok all good")
+//            }
+//        }
+//    }
     func getAllGroupMessageFromDB(group : Group){
         FireStoreUtils.sharedInstance.getAllGroupMessage(group) { [weak self] groupMessages in
             self?.groupMessages = groupMessages

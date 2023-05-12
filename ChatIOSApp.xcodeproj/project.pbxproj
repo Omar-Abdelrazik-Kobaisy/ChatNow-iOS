@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		071D0FF929FAEE69009F3937 /* FriendRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071D0FF829FAEE69009F3937 /* FriendRequestViewController.swift */; };
 		071D0FFB29FB0D5B009F3937 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071D0FFA29FB0D5B009F3937 /* Message.swift */; };
+		072AA29C2A0C661E00984229 /* ConversationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072AA29B2A0C661E00984229 /* ConversationStatus.swift */; };
 		073531A12A0052C500AA0A02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 073531A32A0052C500AA0A02 /* Localizable.strings */; };
 		073531A92A00944E00AA0A02 /* MOLH in Frameworks */ = {isa = PBXBuildFile; productRef = 073531A82A00944E00AA0A02 /* MOLH */; };
 		073531AB2A00A5FC00AA0A02 /* SettingsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073531AA2A00A5FC00AA0A02 /* SettingsControllerDelegate.swift */; };
@@ -109,6 +110,7 @@
 /* Begin PBXFileReference section */
 		071D0FF829FAEE69009F3937 /* FriendRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestViewController.swift; sourceTree = "<group>"; };
 		071D0FFA29FB0D5B009F3937 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		072AA29B2A0C661E00984229 /* ConversationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationStatus.swift; sourceTree = "<group>"; };
 		073531A22A0052C500AA0A02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		073531A42A0052DE00AA0A02 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		073531A52A0052DE00AA0A02 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				079024A729FF74820025E0B1 /* ReloadTableView.swift */,
 				073531AA2A00A5FC00AA0A02 /* SettingsControllerDelegate.swift */,
 				07D988D72A0494550063E753 /* FriendRequestTableViewDelegate.swift */,
+				072AA29B2A0C661E00984229 /* ConversationStatus.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				076BCF9729EF8A0400D2C06D /* UIViewControllerExtension.swift in Sources */,
 				0737261729F04A8C00E7EED4 /* Constants.swift in Sources */,
 				079024A829FF74820025E0B1 /* ReloadTableView.swift in Sources */,
+				072AA29C2A0C661E00984229 /* ConversationStatus.swift in Sources */,
 				0785FDCC29E89C6300D24859 /* UserDetailsViewController.swift in Sources */,
 				07F8FD5D29E59563003FCBCD /* SigninViewController.swift in Sources */,
 				07814FEE2A0604910095DF57 /* UIBarButtonItem+Badge.swift in Sources */,

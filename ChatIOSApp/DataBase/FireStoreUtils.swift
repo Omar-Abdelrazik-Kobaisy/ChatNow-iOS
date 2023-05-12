@@ -133,11 +133,34 @@ class FireStoreUtils {
         })
     }
     
-    func getAllMessages(roomID : String , onCompleteDelegate : @escaping ([Message])->(Void)){
+//    func updatePrivateRoom(room : PrivateRoom , onCompleteUpdate : @escaping (Error?)->(Void)){
+//        let messageCount = UserDefaults.standard.integer(forKey: "count")
+//        print(messageCount)
+//        db?.collection(Constant.PRIVATEROOM_COLLECTION_REFERENCE).document(room.id ?? "").updateData(["unreadMessages" : messageCount],completion: { error in
+//            onCompleteUpdate(error)
+//        })
+//    }
+    
+//    func getAllPrivateRoomAfterUpdate(onCompleteDelegate : @escaping ([PrivateRoom] , Error?)->(Void)){
+//        var updatedRoom : [PrivateRoom] = []
+//        db?.collection(Constant.PRIVATEROOM_COLLECTION_REFERENCE).addSnapshotListener({ querySnapshot, error in
+//            guard let querySnapshot = querySnapshot else { return }
+//            querySnapshot.documentChanges.forEach { doc in
+//                guard let room = ModelController().convert(dictionary: doc.document.data(), ToObj: PrivateRoom())else{return}
+//                if doc.type == .modified{
+//                    updatedRoom.append(room)
+//                }
+//                updatedRoom.append(room)
+//            }
+//            onCompleteDelegate(updatedRoom , error)
+//        })
+//    }
+    
+    func getAllMessages(room : PrivateRoom , onCompleteDelegate : @escaping ([Message])->(Void)){
         
         var messages : [Message] = []
         
-        db?.collection(Constant.PRIVATEROOM_COLLECTION_REFERENCE).document(roomID).collection(Constant.MESSAGE_COLLECTION_REFERENCE).order(by: "dateTime").addSnapshotListener({ querySnapshot, error in
+        db?.collection(Constant.PRIVATEROOM_COLLECTION_REFERENCE).document(room.id ?? "").collection(Constant.MESSAGE_COLLECTION_REFERENCE).order(by: "dateTime").addSnapshotListener({ querySnapshot, error in
             if let e = error {
                 //fail
                 print("error fail to get messages : \(e.localizedDescription)")
@@ -148,6 +171,7 @@ class FireStoreUtils {
                     if doc.type == .added{
                         guard let message = ModelController().convert(dictionary: doc.document.data(), ToObj: Message())else{return}
                         messages.append(message)
+//                        UserDefaults.standard.setValue(room.unreadMessages! + 1, forKey: "count")
                     }
                 }
                 onCompleteDelegate(messages)

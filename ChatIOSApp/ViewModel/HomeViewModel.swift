@@ -29,6 +29,15 @@ class HomeViewModel: MenuNavigator{
     var bindingImageData : ((Data?)->(Void)) = {_ in}
     var bindingAllRequest : (([Request])->(Void)) = {_ in}
     var bindingAllGroupChat : ([Group])->(Void) = {_ in}
+//    var bindingAllPrivateRooms : ([PrivateRoom])->(Void) = {_ in}
+    
+    
+//    var allRooms : [PrivateRoom] = []{
+//        didSet{
+//            //binding
+//            bindingAllPrivateRooms(allRooms)
+//        }
+//    }
     
     var groups : [Group] = []{
         didSet{
@@ -98,5 +107,24 @@ class HomeViewModel: MenuNavigator{
             self?.imageData = data
         }
     }
-    
+//    func getAllPrivateRoomFromDB(){
+//        FireStoreUtils.sharedInstance.getAllPrivateRoomAfterUpdate {[weak self] rooms, error in
+//            if let e = error{
+//                //fail
+//                self?.navigator?.showAlert(title: "getUpdatedRooms", message: "error : \(e.localizedDescription)", onActionClick: nil)
+//            }else{
+//                self?.allRooms = rooms
+//            }
+//        }
+//    }
+//    func getAllPrivateRoom(){
+//        FireStoreUtils.sharedInstance.getAllPrivateRoom {[weak self] rooms, error in
+//            if let e = error{
+//                //fail
+//                self?.navigator?.showAlert(title: "getUpdatedRooms", message: "error : \(e.localizedDescription)", onActionClick: nil)
+//            }else{
+//                self?.allRooms = rooms
+//            }
+//        }
+//    }
 }
